@@ -21,9 +21,9 @@ function App() {
         className="bg-fixed bg-gradient-to-r from-gray-900 to-gray-800 min-h-screen"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        {/* <SiteNotice /> */}
+        <SiteNotice />
 
-        <Navbar />
+        {/* <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/team" element={<Team />} />
@@ -31,7 +31,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/event/:id" element={<EventDetails />} />
         </Routes>
-        <Footer />
+        <Footer /> */}
       </div>
     </Router>
   );
