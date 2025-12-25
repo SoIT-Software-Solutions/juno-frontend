@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
-import backgroundImage from "./images/PC.png";
+import backgroundImage from "./images/PC.jpg";
 import EventDetails from "./components/EventDetails";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -18,7 +18,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div
-        className="bg-fixed bg-gradient-to-r from-gray-900 to-gray-800 min-h-screen"
+        className="bg-fixed bg-cover min-h-max"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <SiteNotice />
