@@ -13,7 +13,7 @@ function SiteNotice() {
         <br /> coming soon.
       </motion.h1>
       <motion.p
-        className="text-white text-center opacity-80 text-sm sm:text-base tracking-wide"
+        className="text-yellow-50 text-center opacity-80 text-sm sm:text-base tracking-wide"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.8 }}
