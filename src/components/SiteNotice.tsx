@@ -4,7 +4,7 @@ function SiteNotice() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen px-4">
       <motion.h1
-        className="text-white text-center text-3xl sm:text-4xl font-extrabold drop-shadow-lg mb-6"
+        className="text-yellow-100 text-center text-3xl sm:text-4xl font-extrabold drop-shadow-lg mb-6"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
