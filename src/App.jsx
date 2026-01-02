@@ -22,8 +22,6 @@ function App() {
           className="bg-fixed bg-cover min-h-max"
           style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-          {/* <SiteNotice />*/}
-
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
