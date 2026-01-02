@@ -3,28 +3,19 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "LemonMilk";
-  src: url("../src/fonts/LEMONMILK-Regular.otf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Montern";
-  src: url("../src/fonts/Montern\ -\ \(Demo\)\ hanscostudio.com.ttf");
+  font-family: "Copperplate_Gothic_Bold_Regular";
+  src: url("./fonts/Copperplate_Gothic_Bold_Regular.ttf");
   font-weight: normal;
   font-size: normal;
 }
 
 @font-face {
-  font-family: "BullStand";
-  src: url("../src/fonts/bullstandregular-rgojo.ttf") format("truetype");
-  font-weight: normal;
-  font-size: normal;
+  font-family: "Hanora-Regular";
+  src: url("./fonts/Hanora-Regular.otf");
 }
 
 body {
-  font-family: "LemonMilk", sans-serif;
+  font-family: "Copperplate_Gothic_Bold_Regular", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
