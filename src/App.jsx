@@ -15,25 +15,25 @@ import SiteNotice from "./components/SiteNotice";
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div
-        className="bg-fixed bg-cover min-h-max"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <SiteNotice />
-
-        {/* <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/event/:id" element={<EventDetails />} />
-        </Routes>
-        <Footer /> */}
-      </div>
-    </Router>
+    <div className="bg-black">
+      <Router>
+        <ScrollToTop />
+        <div
+          className="bg-fixed bg-cover min-h-max"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        >
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/event/:id" element={<EventDetails />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </div>
   );
 }
 

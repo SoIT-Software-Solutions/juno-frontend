@@ -17,7 +17,7 @@ function HeroSection() {
   };
 
   useEffect(() => {
-    const targetDate = new Date("Mar 6, 2025").getTime();
+    const targetDate = new Date("Feb 25, 2026").getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -59,25 +59,25 @@ function HeroSection() {
           <div className="font-extrabold tracking-wider bg-gradient-to-b from-goldish1 to-goldish2 bg-clip-text text-transparent">
             <div className="grid grid-cols-4 gap-8 text-[clamp(2rem,8vw,6rem)]">
               <div className="flex flex-col items-center">
-                <span className="font-mono text-6xl sm:text-8xl">
+                <span className="text-6xl sm:text-8xl">
                   {timeLeft.days.toString().padStart(2, "0")}
                 </span>
                 <span className="text-xl text-gray-400">Days</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="font-mono text-6xl sm:text-8xl">
+                <span className="text-6xl sm:text-8xl">
                   {timeLeft.hours.toString().padStart(2, "0")}
                 </span>
                 <span className="text-xl text-gray-400">Hours</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="font-mono text-6xl sm:text-8xl">
+                <span className="text-6xl sm:text-8xl">
                   {timeLeft.minutes.toString().padStart(2, "0")}
                 </span>
                 <span className="text-xl text-gray-400">Min</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="font-mono text-6xl sm:text-8xl">
+                <span className="text-6xl sm:text-8xl">
                   {timeLeft.seconds.toString().padStart(2, "0")}
                 </span>
                 <span className="text-xl text-gray-400">Sec</span>
