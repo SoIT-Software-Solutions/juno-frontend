@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import juno2k26NavbarLogo from "../images/juno2k26_navbar_logo.png";
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-[#000000b3] backdrop-blur-xl text-white shadow-2xl sticky top-0 z-50">
+    <nav className="bg-[#000000dd] backdrop-blur-lg text-white shadow-2xl sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link
           to="/"
           className="bull-stand text-3xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500"
         >
-          JUNO 2K25
+          <img src={juno2k26NavbarLogo} className="h-[50px]" />
         </Link>
 
         <div className="hidden md:flex space-x-6">
