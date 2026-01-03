@@ -9,7 +9,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import { About } from "./pages/About";
 import Contact from "./pages/Contact";
-import Events from "./pages/Events";
+import { Events } from "./pages/Events";
+import {GalleryPage} from "./pages/Gallery";
 import Team from "./pages/Team";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/event/:id" element={<EventDetails />} />
