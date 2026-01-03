@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { day1Events, day2Events } from "../data/eventsNew";
 
-export const Events: React.FC = () => {
+export const EventsPage: React.FC = () => {
   const [activeDay, setActiveDay] = useState<number>(1);
   const events = activeDay === 1 ? day1Events : day2Events;
 
@@ -65,7 +65,7 @@ export const Events: React.FC = () => {
           {events.map((event, idx) => (
             <div
               key={`${activeDay}-${idx}`}
-              className="card-glass p-6 rounded-[32px] border-white group hover:border-cyan-400 transition-all duration-500 animate-fade-in"
+              className="card-glass p-6 rounded-[32px] border-white/5 group hover:border-cyan-400/30 transition-all duration-500 animate-fade-in"
             >
               <div className="aspect-video w-full bg-black/40 rounded-2xl overflow-hidden mb-8 relative">
                 <img
