@@ -39,6 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
             <NavLink label="ABOUT" href="/about" />
             <NavLink label="EVENTS" href="/events" />
             <NavLink label="GALLERY" href="/gallery" />
+            <NavLink label="TEAM" href="/team" />
             <NavLink label="CONTACT US" href="/contact" />
           </div>
 
@@ -101,6 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
             <MobileNavLink label="ABOUT" href="/about" onClick={closeMobileMenu} />
             <MobileNavLink label="EVENTS" href="/events" onClick={closeMobileMenu} />
             <MobileNavLink label="GALLERY" href="/gallery" onClick={closeMobileMenu} />
+            <MobileNavLink label="TEAM" href="/team" onClick={closeMobileMenu} />
             <MobileNavLink label="CONTACT US" href="/contact" onClick={closeMobileMenu} />
           </div>
         </div>
