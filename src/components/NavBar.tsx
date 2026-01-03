@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavLogo from "../images/juno2k26_navbar_logo.png";
 
-interface NavbarProps {
-  currentPath?: string;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
+function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -19,13 +15,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] bg-black/09 backdrop-blur-xl border-b border-white/5 transition-all duration-500">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#000000ad] backdrop-blur-xl border-b border-white/5 transition-all duration-500">
+        <div className="mx-auto px-6 h-14 flex items-center">
           <Link
             to="/"
-            className="flex items-center space-x-3 cursor-pointer group"
+            className="flex items-center space-x-3 cursor-pointer group mr-auto"
           >
-            <div className="h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+            <div className="h-10 flex items-end justify-start transition-transform duration-500 group-hover:scale-110">
               <img
                 src={NavLogo}
                 className="w-full h-full object-contain"
@@ -67,12 +63,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden fixed inset-0 z-[90] bg-black/80 backdrop-blur-md transition-opacity duration-300 ${
-        isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}>
-        <div className={`fixed top-0 right-0 h-full w-80 bg-black/95 backdrop-blur-xl border-l border-white/10 transform transition-transform duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
+      <div
+        className={`md:hidden fixed inset-0 z-[90] bg-black/80 backdrop-blur-md transition-opacity duration-300 ${
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div
+          className={`fixed top-0 right-0 h-full w-80 bg-black/95 backdrop-blur-xl border-l border-white/10 transform transition-transform duration-300 ease-in-out ${
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
           {/* Close Button */}
           <div className="flex justify-end p-6">
             <button
@@ -99,6 +99,26 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
           {/* Mobile Menu Links */}
           <div className="flex flex-col space-y-8 px-6 pt-8">
             <MobileNavLink label="HOME" href="/" onClick={closeMobileMenu} />
+            <MobileNavLink
+              label="ABOUT"
+              href="/about"
+              onClick={closeMobileMenu}
+            />
+            <MobileNavLink
+              label="EVENTS"
+              href="/events"
+              onClick={closeMobileMenu}
+            />
+            <MobileNavLink
+              label="GALLERY"
+              href="/gallery"
+              onClick={closeMobileMenu}
+            />
+            <MobileNavLink
+              label="CONTACT US"
+              href="/contact"
+              onClick={closeMobileMenu}
+            />
             <MobileNavLink label="ABOUT" href="/about" onClick={closeMobileMenu} />
             <MobileNavLink label="EVENTS" href="/events" onClick={closeMobileMenu} />
             <MobileNavLink label="GALLERY" href="/gallery" onClick={closeMobileMenu} />
@@ -109,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
       </div>
     </>
   );
-};
+}
 
 const NavLink: React.FC<{ label: string; href: string; active?: boolean }> = ({
   label,
@@ -126,11 +146,11 @@ const NavLink: React.FC<{ label: string; href: string; active?: boolean }> = ({
   </a>
 );
 
-const MobileNavLink: React.FC<{ label: string; href: string; onClick: () => void }> = ({
-  label,
-  href,
-  onClick,
-}) => (
+const MobileNavLink: React.FC<{
+  label: string;
+  href: string;
+  onClick: () => void;
+}> = ({ label, href, onClick }) => (
   <a
     href={href}
     onClick={onClick}

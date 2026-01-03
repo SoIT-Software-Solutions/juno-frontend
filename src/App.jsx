@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
-import { Navbar } from "./components/NavBar";
+import Navbar from "./components/NavBar";
 import { Footer } from "./components/Footer";
 import backgroundImage from "./images/PC.jpg";
 import EventDetails from "./components/EventDetails";
