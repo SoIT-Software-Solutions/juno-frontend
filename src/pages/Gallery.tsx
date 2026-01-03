@@ -36,7 +36,7 @@ export const GalleryPage: React.FC = () => {
         <div className="text-center mb-16">
           <p className="text-white/40 text-xs tracking-[0.5em] font-bold uppercase mb-4">Memories</p>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-10">
-            JUNO <span className="font-serif italic text-pink-500 lowercase">Gallery</span>
+            JUNO <span className="font-hanora gold-text font-normal">Gallery</span>
           </h1>
           
           {/* Album Tabs */}
