@@ -7,6 +7,8 @@ import EventDetails from "./components/EventDetails";
 import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
+import {Day1RegForm} from "./pages/Day1RegForm";
+import {Day2RegForm} from "./pages/Day2RegForm";
 import { About } from "./pages/About";
 import Contact from "./pages/Contact";
 import { Events } from "./pages/Events";
@@ -31,6 +33,8 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/event/:id" element={<EventDetails />} />
+            <Route path="/forms/day1" element={<Day1RegForm />} />
+            <Route path="/forms/day2" element={<Day2RegForm />} />
           </Routes>
           <Footer />
         </div>

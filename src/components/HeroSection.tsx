@@ -65,8 +65,8 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col space-y-6 items-center">
             {/* Registration Buttons */}
             <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6 w-full lg:justify-end">
-              <SecBtn onClick={() => (window.location.href = "/events")}>Day 1 Registration</SecBtn>
-              <SecBtn onClick={() => (window.location.href = "/events")}>Day 2 Registration</SecBtn>
+              <SecBtn onClick={() => (window.location.href = "/forms/day1")}>Day 1 Registration</SecBtn>
+              <SecBtn onClick={() => (window.location.href = "/forms/day2")}>Day 2 Registration</SecBtn>
             </div>
 
             {/* Rule Book Link */}
