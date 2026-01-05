@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-black/09 backdrop-blur-xl border-b border-white/5 transition-all duration-500">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-screen-2xl   mx-auto px-6 h-20 flex items-center justify-between">
           <Link
             to="/"
             className="flex items-center space-x-3 cursor-pointer group"
