@@ -1,5 +1,5 @@
 export interface EventType {
-  id: number;
+  id: string;
   day: number;
   name: string;
   image: string;

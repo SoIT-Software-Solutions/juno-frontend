@@ -1,7 +1,7 @@
 export const events = [
   // Some bs AI generated data, need to move to api when backend is done
   {
-    id: 1,
+    id: "Paper_Presentation",
     day: 1,
     name: "PAPER PRESENTATION",
     image: "/images/event_image/day_1/1_paper_presentation.JPG",
@@ -14,7 +14,7 @@ export const events = [
     form: "https://example.com/startup-form",
   },
   {
-    id: 2,
+    id: "Valorant",
     day: 2,
     name: "Gaming Tournament: Valorant 5v5",
     image: "/images/event_image/day_2/valorant.jpg",

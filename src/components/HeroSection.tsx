@@ -42,7 +42,7 @@ export const Hero: React.FC = () => {
       <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 items-center">
         {/* Left Side: Large Logo and Event Title */}
         <div className="flex flex-col items-center lg:items-start space-y-4 animate-fade-in">
-          <div className="w-full h-full  relative float-animation">
+          <div className="w-full h-full  relative">
             <img
               src={heroLogo}
               className="w-[900px] h-auto object-contain"
@@ -62,15 +62,15 @@ export const Hero: React.FC = () => {
             <TimerUnit value={timeLeft.min} label="MIN" />
             <TimerUnit value={timeLeft.sec} label="SEC" />
           </div>
-          <div className="flex flex-col space-y-6 items-center">
+          <div className="flex flex-col space-y-6 items-center justify-center">
             {/* Registration Buttons */}
             <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6 w-full lg:justify-end">
-              <SecBtn onClick={() => (window.location.href = "/events")}>Day 1 Registration</SecBtn>
-              <SecBtn onClick={() => (window.location.href = "/events")}>Day 2 Registration</SecBtn>
+              <SecBtn onClick={() => (window.location.href = "/forms/day1")}>Day 1 Registration</SecBtn>
+              <SecBtn onClick={() => (window.location.href = "/forms/day2")}>Day 2 Registration</SecBtn>
             </div>
 
             {/* Rule Book Link */}
-            <div className=" rounded-2xl text-[12px] md:text-sm font-black tracking-[0.2em]  transition-all duration-500 min-w-[240px]">
+            <div className="flex justify-center  text-[12px] md:text-sm font-black tracking-[0.2em]  transition-all duration-500 min-w-[240px]">
               <TriBtn onClick={() => (window.location.href = "/rulebook")}>
                 Rule Book
               </TriBtn>
@@ -92,7 +92,7 @@ const TimerUnit: React.FC<{ value: number; label: string }> = ({
   label,
 }) => (
   <div className="flex flex-col items-center group">
-    <span className="text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-500 font-hanora transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_0_20px_rgba(234,179,8,0.4)]">
+    <span className="text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-500 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_0_20px_rgba(234,179,8,0.4)]">
       {String(value).padStart(2, "0")}
     </span>
     <span className="text-[10px] md:text-[12px] tracking-[0.3em] text-white/60 font-black mt-2 uppercase">

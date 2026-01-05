@@ -16,6 +16,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Kirsty";
+  src: url("./fonts/Kirsty Bd.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+  
 :root {
   --gold: #eab308;
   --gold-light: #fde047;
@@ -32,6 +39,11 @@ body {
 .font-hanora {
   font-family: "Hanora", serif;
 }
+
+.font-kirsty {
+  font-family: "Kirsty", sans-serif;
+}
+
 .marble-bg {
   background: linear-gradient(
       to bottom,

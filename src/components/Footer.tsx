@@ -35,18 +35,19 @@ export const Footer: React.FC = () => {
               <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black mb-6 uppercase">
                 Location
               </h4>
-              <p className="text-white/70 text-base md:text-lg font-medium tracking-wide leading-relaxed">
+              <br />
+              <a href="https://maps.app.goo.gl/336pieByUpv2UFrX8" className="text-white/70 text-base md:text-lg font-medium tracking-wide leading-relaxed">
                 161, Guru Nanak Salai,
                 <br />
                 Velachery, Chennai - 600042
-              </p>
+              </a>
             </div>
 
             <div>
               <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black mb-6 uppercase">
                 Contact
               </h4>
-              <p className="text-white/70 text-sm md:text-lg font-bold tracking-[0.15em] break-all uppercase">
+              <p className="text-white/70 text-base md:text-lg font-medium tracking-wide leading-relaxed">
                 juno@gurunanakcollege.edu.in
               </p>
             </div>
