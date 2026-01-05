@@ -5,6 +5,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./index.css";
+import Navbar from "./components/NavBar";
+import { Footer } from "./components/Footer";
+import backgroundImage from "./images/PC.jpg";
+import EventDetails from "./components/EventDetails";
+import ScrollToTop from "./components/ScrollToTop";
 
 {/* Pages */}
 import Home from "./pages/Home";
