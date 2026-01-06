@@ -4,7 +4,7 @@ import { SecBtn } from "./ui/SecBtn";
 
 export const StatsSection: React.FC = () => {
   return (
-    <section className=" px-6 w-full min-h-screen flex flex-col items-center justify-center relative">
+    <section className=" px-6 mb-20 w-full flex flex-col items-center justify-center relative">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="mt-20 font-hanora text-5xl md:text-7xl font-black gold-text tracking-[0.2em] mb-8 uppercase">
           Events

@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { day1Events, day2Events } from "../data/eventsNew";
 
 export const EventSchedule: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-32 px-6">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-20">
@@ -12,13 +13,13 @@ export const EventSchedule: React.FC = () => {
           </h3>
           <div className="space-y-6 w-full flex flex-col items-center">
             {day1Events.map((event, idx) => (
-              <Link
+              <a
                 key={idx}
-                to={`/events/${event.id}`}
+                href={`/events/${event.id}`}
                 className="text-lg md:text-2xl font-bold tracking-[0.15em] text-white/70 uppercase hover:text-yellow-500 transition-all duration-300 cursor-pointer hover:scale-105"
               >
                 {event.name}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
@@ -30,13 +31,13 @@ export const EventSchedule: React.FC = () => {
           </h3>
           <div className="space-y-6 w-full flex flex-col items-center">
             {day2Events.map((event, idx) => (
-              <Link
+              <a
                 key={idx}
-                to={`/events/${event.id}`}
+                href={`/events/${event.id}`}
                 className="text-lg md:text-2xl font-bold tracking-[0.15em] text-white/70 uppercase hover:text-yellow-500 transition-all duration-300 cursor-pointer hover:scale-105"
               >
                 {event.name}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

@@ -225,7 +225,7 @@ const RadioOption: React.FC<{
       )}
     </div>
     <span
-      className={`text-[11px] font-bold tracking-[0.1em] uppercase ${
+      className={`text-[12px] font-bold tracking-[0.1em] uppercase ${
         selected === value
           ? "text-[var(--gold)]"
           : "text-white group-hover:text-white"

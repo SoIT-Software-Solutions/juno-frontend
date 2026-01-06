@@ -1,54 +1,89 @@
+import React, { useState, useEffect } from "react";
 
-import React, { useState } from 'react';
-
-type Album = '2k26' | '2k25' | '2k24';
+type Album = "2k26" | "2k25" | "2k24";
 
 const galleryData: Record<Album, string[]> = {
-  '2k24': [
-    'https://images.unsplash.com/photo-1540575861501-7ad060e39fe5?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop',
+  "2k24": [
+    "https://images.unsplash.com/photo-1540575861501-7ad060e39fe5?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop",
   ],
-  '2k25': [
-    'https://images.unsplash.com/photo-1514525253348-8d9407c52085?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1475721027187-4024733924f7?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=600&auto=format&fit=crop',
+  "2k25": [
+    "https://images.unsplash.com/photo-1514525253348-8d9407c52085?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1475721027187-4024733924f7?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=600&auto=format&fit=crop",
   ],
-  '2k26': [
-    'https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1531058021387-49351d42a4b7?q=80&w=600&auto=format&fit=crop',
+  "2k26": [
+    "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1531058021387-49351d42a4b7?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1531058021387-49351d42a4b7?q=80&w=600&auto=format&fit=crop",
   ],
 };
 
 export const GalleryPage: React.FC = () => {
-  const [activeAlbum, setActiveAlbum] = useState<Album>('2k25');
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeAlbum, setActiveAlbum] = useState<Album>("2k25");
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const currentImages = galleryData[activeAlbum];
+
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      document.body.style.overflow = "hidden";
+      window.scrollTo(0, 0);
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedIndex]);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedIndex === null) return;
+    setSelectedIndex((prev) =>
+      prev === 0 ? currentImages.length - 1 : prev! - 1
+    );
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (selectedIndex === null) return;
+    setSelectedIndex((prev) =>
+      prev === currentImages.length - 1 ? 0 : prev! + 1
+    );
+  };
 
   return (
     <div className="pt-32 pb-20 px-6 lg:px-20 animate-fade-in min-h-screen">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-white/40 text-xs tracking-[0.5em] font-bold uppercase mb-4">Memories</p>
+          <p className="text-white/40 text-xs tracking-[0.5em] font-bold uppercase mb-4">
+            Memories
+          </p>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-10">
-            JUNO <span className="font-hanora gold-text font-normal">Gallery</span>
+            JUNO{" "}
+            <span className="font-hanora gold-text font-normal">Gallery</span>
           </h1>
-          
+
           {/* Album Tabs */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-8">
-            {(['2k24', '2k25', '2k26'] as Album[]).map((album) => (
-              <button 
+            {(["2k24", "2k25", "2k26"] as Album[]).map((album) => (
+              <button
                 key={album}
-                onClick={() => setActiveAlbum(album)}
+                onClick={() => {
+                  setActiveAlbum(album);
+                  setSelectedIndex(null);
+                }}
                 className={`px-10 py-3 rounded-full border transition-all duration-300 text-sm font-black tracking-widest ${
-                  activeAlbum === album 
-                  ? 'border-cyan-400 bg-cyan-400/10 text-white shadow-[0_0_20px_rgba(34,211,238,0.2)]' 
-                  : 'border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:text-white'
+                  activeAlbum === album
+                    ? "border-[var(--gold)] bg-[var(--gold)]/10 text-white shadow-[0_0_20px_rgba(234,179,8,0.2)]"
+                    : "border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:text-white"
                 }`}
               >
                 {album.toUpperCase()}
@@ -58,49 +93,67 @@ export const GalleryPage: React.FC = () => {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {galleryData[activeAlbum].map((src, idx) => (
-            <div 
-              key={`${activeAlbum}-${idx}`} 
-              className="aspect-square bg-white/5 rounded-2xl overflow-hidden cursor-zoom-in group relative border border-white/5 hover:border-cyan-400/30 transition-all duration-500"
-              onClick={() => setSelectedImage(src)}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full">
+          {currentImages.map((img, idx) => (
+            <div
+              key={`${activeAlbum}-${idx}`}
+              onClick={() => setSelectedIndex(idx)}
+              className="aspect-[4/5] bg-[#D1D5DB]/90 rounded-sm overflow-hidden shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-yellow-500/20 cursor-pointer"
             >
-              <img 
-                src={src} 
-                alt={`Gallery ${activeAlbum} ${idx}`} 
-                className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
+              <img
+                src={img}
+                alt={`Gallery ${activeAlbum} ${idx}`}
+                className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
           ))}
         </div>
 
         {/* Lightbox */}
-        {selectedImage && (
-          <div 
-            className="fixed inset-0 z-[110] bg-black/95 flex items-center justify-center p-4 animate-fade-in"
-            onClick={() => setSelectedImage(null)}
+        {selectedIndex !== null && (
+          <div
+            className="fixed h-screen inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            onClick={() => setSelectedIndex(null)}
           >
-            <div className="relative max-w-5xl w-full h-full flex items-center justify-center">
-              <img 
-                src={selectedImage} 
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" 
-                alt="Full View"
+            <button
+              className="absolute top-10 right-10 md:top-10 md:right-10 text-white text-4xl font-light hover:text-[var(--gold)] transition-all z-[110]"
+              onClick={() => setSelectedIndex(null)}
+            >
+              ✕
+            </button>
+
+            <button
+              className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 text-white/40 hover:text-[var(--gold)] text-4xl md:text-6xl font-light transition-all z-[110] p-2 md:p-4"
+              onClick={handlePrev}
+            >
+              ‹
+            </button>
+
+            <button
+              className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 text-white/40 hover:text-[var(--gold)] text-4xl md:text-6xl font-light transition-all z-[110] p-2 md:p-4"
+              onClick={handleNext}
+            >
+              ›
+            </button>
+
+            <div className="relative w-full h-full flex items-center justify-center p-4">
+              <img
+                src={currentImages[selectedIndex]}
+                alt="Fullscreen"
+                className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg shadow-[0_0_100px_rgba(234,179,8,0.3)] animate-[scaleIn_0.3s_ease-out]"
                 onClick={(e) => e.stopPropagation()}
               />
-              <button 
-                className="absolute top-4 right-4 text-white hover:text-cyan-400 transition-colors"
-                onClick={() => setSelectedImage(null)}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+            </div>
+
+            <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-white/30 font-hanora tracking-[0.2em] uppercase text-xs md:text-sm">
+              FRAME {selectedIndex + 1} / {currentImages.length}
             </div>
           </div>
         )}
-
       </div>
+      <style>{`
+        @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+      `}</style>
     </div>
   );
 };
