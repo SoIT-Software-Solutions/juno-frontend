@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import NavLogo from "../images/juno2k26_navbar_logo.png";
 
-interface NavbarProps {
-  currentPath?: string;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
+function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -24,9 +20,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
         <div className="max-w-screen-2xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link
             to="/"
-            className="flex items-center space-x-3 cursor-pointer group"
+            className="flex items-center space-x-3 cursor-pointer group mr-auto"
           >
-            <div className="h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+            <div className="h-10 flex items-end justify-start transition-transform duration-500 group-hover:scale-110">
               <img
                 src={NavLogo}
                 className="w-full h-full object-contain"
@@ -104,6 +100,26 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
           {/* Mobile Menu Links */}
           <div className="flex flex-col space-y-8 px-6 pt-8">
             <MobileNavLink label="HOME" href="/" onClick={closeMobileMenu} />
+            <MobileNavLink
+              label="ABOUT"
+              href="/about"
+              onClick={closeMobileMenu}
+            />
+            <MobileNavLink
+              label="EVENTS"
+              href="/events"
+              onClick={closeMobileMenu}
+            />
+            <MobileNavLink
+              label="GALLERY"
+              href="/gallery"
+              onClick={closeMobileMenu}
+            />
+            <MobileNavLink
+              label="CONTACT US"
+              href="/contact"
+              onClick={closeMobileMenu}
+            />
             <MobileNavLink label="ABOUT" href="/about" onClick={closeMobileMenu} />
             <MobileNavLink label="EVENTS" href="/events" onClick={closeMobileMenu} />
             <MobileNavLink label="GALLERY" href="/gallery" onClick={closeMobileMenu} />
@@ -114,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
       </div>
     </>
   );
-};
+}
 
 const NavLink: React.FC<{ label: string; href: string; active?: boolean }> = ({
   label,
@@ -131,11 +147,11 @@ const NavLink: React.FC<{ label: string; href: string; active?: boolean }> = ({
   </a>
 );
 
-const MobileNavLink: React.FC<{ label: string; href: string; onClick: () => void }> = ({
-  label,
-  href,
-  onClick,
-}) => (
+const MobileNavLink: React.FC<{
+  label: string;
+  href: string;
+  onClick: () => void;
+}> = ({ label, href, onClick }) => (
   <a
     href={href}
     onClick={onClick}

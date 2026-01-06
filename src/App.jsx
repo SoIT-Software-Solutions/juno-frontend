@@ -5,23 +5,20 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./index.css";
+import { Footer } from "./components/Footer";
+import backgroundImage from "./images/PC.jpg";
+import EventDetails from "./components/EventDetails";
+import ScrollToTop from "./components/ScrollToTop";
 
-{/* Pages */}
 import Home from "./pages/Home";
 import { About } from "./pages/About";
-import { Navbar } from "./components/NavBar";
+import Navbar from "./components/NavBar";
 import { Day1RegForm } from "./pages/Day1RegForm";
 import { Day2RegForm } from "./pages/Day2RegForm";
 import Contact from "./pages/Contact";
 import { Events } from "./pages/Events";
 import { GalleryPage } from "./pages/Gallery";
 import Team from "./pages/Team";
-
-{/* Components */}  
-import EventDetails from "./components/EventDetails";
-import backgroundImage from "./images/PC.jpg";
-import { Footer } from "./components/Footer";
-
 
 function App() {
   return (
