@@ -8,7 +8,7 @@ import "./index.css";
 import { Footer } from "./components/Footer";
 import backgroundImage from "./images/PC.jpg";
 import EventDetails from "./components/EventDetails";
-import ScrollToTop from "./components/ScrollToTop";
+// import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
 import { About } from "./pages/About";

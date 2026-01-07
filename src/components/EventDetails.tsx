@@ -12,9 +12,14 @@ function EventDetails() {
   if (!event) {
     return (
       <div className="h-[90vh] w-full flex flex-col gap-3 items-center justify-center  font-bold">
-       <p className="gold-text text-8xl">Event not found</p>
-       <a href="mailto: juno@gurunanakcollege.edu.in" className="text-2xl px-6 py-3 border border-yellow-500 rounded-lg backdrop-blur-[29px] hover:bg-yellow-500/10 hover:shadow-lg transition-all duration-300">contact us for  details</a>
-      </div>  
+        <p className="gold-text text-8xl">Event not found</p>
+        <a
+          href="mailto: juno@gurunanakcollege.edu.in"
+          className="text-2xl px-6 py-3 border border-yellow-500 rounded-lg backdrop-blur-[29px] hover:bg-yellow-500/10 hover:shadow-lg transition-all duration-300 "
+        >
+          contact us for details
+        </a>
+      </div>
     );
   }
 

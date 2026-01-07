@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import NavLogo from "../images/juno2k26_navbar_logo.png";
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -15,8 +16,8 @@ function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#000000ad] backdrop-blur-xl border-b border-white/5 transition-all duration-500">
-        <div className="mx-auto px-6 h-14 flex items-center">
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-black/09 backdrop-blur-xl border-b border-white/5 transition-all duration-500">
+        <div className="max-w-screen-2xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link
             to="/"
             className="flex items-center space-x-3 cursor-pointer group mr-auto"
@@ -36,7 +37,7 @@ function Navbar() {
             <NavLink label="EVENTS" href="/events" />
             <NavLink label="GALLERY" href="/gallery" />
             <NavLink label="TEAM" href="/team" />
-            <NavLink label="CONTACT US" href="/contact" />
+            {/* <NavLink label="CONTACT US" href="/contact" /> */}
           </div>
 
           {/* Mobile menu icon */}
@@ -123,7 +124,7 @@ function Navbar() {
             <MobileNavLink label="EVENTS" href="/events" onClick={closeMobileMenu} />
             <MobileNavLink label="GALLERY" href="/gallery" onClick={closeMobileMenu} />
             <MobileNavLink label="TEAM" href="/team" onClick={closeMobileMenu} />
-            <MobileNavLink label="CONTACT US" href="/contact" onClick={closeMobileMenu} />
+            {/* <MobileNavLink label="CONTACT US" href="/contact" onClick={closeMobileMenu} /> */}
           </div>
         </div>
       </div>
