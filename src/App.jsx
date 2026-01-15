@@ -8,6 +8,7 @@ import "./index.css";
 import { Footer } from "./components/Footer";
 import backgroundImage from "./images/PC.jpg";
 import EventDetails from "./components/EventDetails";
+import RegisterOAuth from "./pages/RegisterOAuth";
 // import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
@@ -40,6 +41,7 @@ function App() {
             <Route path="/forms/day1" element={<Day1RegForm />} />
             <Route path="/forms/day2" element={<Day2RegForm />} />
             <Route path="/forms" element={<Navigate to="/events" replace />} />
+            <Route path="/google" element={<RegisterOAuth />} />
           </Routes>
           <Footer />
         </div>
