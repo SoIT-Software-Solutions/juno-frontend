@@ -14,12 +14,13 @@ import RegisterOAuth from "./pages/RegisterOAuth";
 import Home from "./pages/Home";
 import { About } from "./pages/About";
 import Navbar from "./components/NavBar";
-import { Day1RegForm } from "./pages/Day1RegForm";
-import { Day2RegForm } from "./pages/Day2RegForm";
+import { ProtectedFormRoute } from "./components/RegistrationForm/ProtectedFormRoute";
+import { RegistrationPage } from "./pages/RegistrationPage";
 import Contact from "./pages/Contact";
 import { Events } from "./pages/Events";
 import { GalleryPage } from "./pages/Gallery";
 import Team from "./pages/Team";
+import { AuthSuccess } from "./pages/AuthSuccess";
 
 function App() {
   return (
@@ -38,10 +39,19 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/events/:id" element={<EventDetails />} />
-            <Route path="/forms/day1" element={<Day1RegForm />} />
-            <Route path="/forms/day2" element={<Day2RegForm />} />
+            {/* <Route path="/forms/day1" element={<Day1RegForm />} />*/}
+            {/* <Route path="/forms/day2" element={<Day2RegForm />} />*/}
+            <Route
+              path="/register/:day"
+              element={
+                <ProtectedFormRoute>
+                  <RegistrationPage />
+                </ProtectedFormRoute>
+              }
+            />
             <Route path="/forms" element={<Navigate to="/events" replace />} />
             <Route path="/google" element={<RegisterOAuth />} />
+            <Route path="/auth/success" element={<AuthSuccess />} />
           </Routes>
           <Footer />
         </div>
