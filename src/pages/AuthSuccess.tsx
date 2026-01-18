@@ -14,6 +14,8 @@ export const AuthSuccess = () => {
     if (token) {
       setAccessToken(token);
 
+      alert("Auth success");
+
       navigate("/", { replace: true });
     } else {
       navigate("/google", { replace: true });

@@ -21,8 +21,28 @@ import { Events } from "./pages/Events";
 import { GalleryPage } from "./pages/Gallery";
 import Team from "./pages/Team";
 import { AuthSuccess } from "./pages/AuthSuccess";
+import { apiClient } from "./apiClient";
+import { useEffect } from "react";
 
 function App() {
+  async function checkRefreshCookie() {
+    try {
+      const res = await apiClient.get("/auth/user");
+      console.log("User authenticated! Cookie exists and valid:", res.data);
+      alert("User authenticated! Cookie exists and valid");
+    } catch (err) {
+      console.log(
+        "No valid cookie / user not authenticated:",
+        err.response?.status,
+      );
+      alert("No valid cookie / user not authenticated");
+    }
+  }
+
+  useEffect(() => {
+    checkRefreshCookie();
+  }, []);
+
   return (
     <div className="bg-black cursor-default select-none">
       <Router>
