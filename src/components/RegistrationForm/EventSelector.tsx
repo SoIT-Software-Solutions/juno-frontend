@@ -1,7 +1,7 @@
 import React from "react";
 
 export type EventItem = {
-  id: string;
+  id: number;
   name: string;
   image: string;
   disabled?: boolean;
@@ -9,8 +9,8 @@ export type EventItem = {
 
 type Props = {
   events: EventItem[];
-  selected: string[];
-  onChange: (ids: string[]) => void;
+  selected: number[];
+  onChange: (ids: number[]) => void;
 };
 
 export const EventSelector: React.FC<Props> = ({
@@ -18,7 +18,7 @@ export const EventSelector: React.FC<Props> = ({
   selected,
   onChange,
 }) => {
-  const toggle = (id: string, disabled?: boolean) => {
+  const toggle = (id: number, disabled?: boolean) => {
     if (disabled) return;
     if (selected.includes(id)) {
       onChange(selected.filter((e) => e !== id));

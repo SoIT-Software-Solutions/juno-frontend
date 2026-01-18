@@ -6,7 +6,9 @@ import { EventType } from "../common/types/eventTypes";
 function EventDetails() {
   const { id } = useParams<{ id: string }>();
 
-  const event: EventType | undefined = id ? getEventByID(id) : undefined;
+  const event: EventType | undefined = id
+    ? getEventByID(parseInt(id))
+    : undefined;
 
   if (!event) {
     return (

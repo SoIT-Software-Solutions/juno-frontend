@@ -7,8 +7,8 @@ import { EventSelector, EventItem } from "./EventSelector";
 type Props = {
   title: string;
   events: EventItem[];
-  defaultEventId?: string;
-  alreadyRegisteredEventIds?: string[];
+  defaultEventId?: number;
+  alreadyRegisteredEventIds?: number[];
   onSubmit: (data: RegistrationData) => void;
 };
 
@@ -30,7 +30,6 @@ export const RegistrationForm: React.FC<Props> = ({
     events: [],
   });
 
-  // Preselect default event + already registered events
   useEffect(() => {
     const preselected = [
       ...(defaultEventId ? [defaultEventId] : []),
@@ -99,11 +98,14 @@ export const RegistrationForm: React.FC<Props> = ({
         otherValue={data.otherYear}
         onOtherChange={(v) => update("otherYear", v)}
       />
-
+      {/*Temp fix here, need to remove any and work on it*/}
       <EventSelector
-        events={events}
+        events={events.map((e) => ({
+          ...e,
+          disabled: alreadyRegisteredEventIds.includes(e.id),
+        }))}
         selected={data.events}
-        onChange={(v) => update("events", v)}
+        onChange={(v: any) => update("events", v)}
       />
 
       <div className="flex justify-center pt-10">

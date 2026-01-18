@@ -3,7 +3,7 @@ import { EventType } from "../common/types/eventTypes";
 export const events: EventType[] = [
   // Day 1
   {
-    id: "Tech_Quiz",
+    id: 1,
     day: 1,
     name: "TECH QUIZ",
     image:
@@ -14,7 +14,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Tech_Connection",
+    id: 2,
     day: 1,
     name: "TECH CONNECTION",
     image:
@@ -25,7 +25,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Box_Cricket",
+    id: 3,
     day: 1,
     name: "BOX CRICKET",
     image:
@@ -36,7 +36,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Cooking_Without_Fire",
+    id: 4,
     day: 1,
     name: "COOKING WITHOUT FIRE",
     image:
@@ -47,7 +47,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Photography",
+    id: 5,
     day: 1,
     name: "PHOTOGRAPHY",
     image:
@@ -58,7 +58,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Poster_Making",
+    id: 6,
     day: 1,
     name: "POSTER MAKING",
     image:
@@ -69,7 +69,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Paper_Presentation",
+    id: 7,
     day: 1,
     name: "PAPER PRESENTATION",
     image:
@@ -80,7 +80,7 @@ export const events: EventType[] = [
     rule: "Teams must present within 5 minutes followed by Q&A.",
   },
   {
-    id: "Debugging",
+    id: 8,
     day: 1,
     name: "DEBUGGING",
     image:
@@ -93,7 +93,7 @@ export const events: EventType[] = [
 
   // Day 2
   {
-    id: "Dance",
+    id: 9,
     day: 2,
     name: "DANCE",
     image:
@@ -104,7 +104,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Ramp_Walk",
+    id: 10,
     day: 2,
     name: "RAMP WALK",
     image:
@@ -115,7 +115,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Ipl_Auction",
+    id: 11,
     day: 2,
     name: "IPL AUCTION",
     image:
@@ -126,7 +126,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Tech_Bingo",
+    id: 12,
     day: 2,
     name: "TECH BINGO",
     image:
@@ -137,7 +137,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Tech_Treasure_Hunt",
+    id: 13,
     day: 2,
     name: "TECH TREASURE HUNT",
     image:
@@ -148,7 +148,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Movie_Quiz",
+    id: 14,
     day: 2,
     name: "MOVIE QUIZ",
     image:
@@ -159,7 +159,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Short_Film",
+    id: 15,
     day: 2,
     name: "SHORT FILM",
     image:
@@ -170,7 +170,7 @@ export const events: EventType[] = [
     rule: "Rules will be updated soon.",
   },
   {
-    id: "Meme_Creation",
+    id: 16,
     day: 2,
     name: "MEME CREATION",
     image:

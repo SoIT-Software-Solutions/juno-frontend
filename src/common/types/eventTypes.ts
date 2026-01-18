@@ -1,5 +1,5 @@
 export interface EventType {
-  id: string;
+  id: number;
   day: number;
   name: string;
   image: string;
@@ -17,5 +17,5 @@ export interface RegistrationData {
   email: string;
   academicYear: string;
   otherYear: string;
-  events: string[];
+  events: number[];
 }

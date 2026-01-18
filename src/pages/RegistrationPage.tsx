@@ -2,19 +2,22 @@ import React from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { getEventByDays } from "../common/utils/eventUtils";
 import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
-import { EventType } from "../common/types/eventTypes";
+// import { EventType } from "../common/types/eventTypes";
 
 export const RegistrationPage: React.FC = () => {
   const { day } = useParams<{ day: string }>();
   const [searchParams] = useSearchParams();
 
-  const dayNumber = day ? parseInt(day) : NaN;
-  const events: EventType[] = isNaN(dayNumber) ? [] : getEventByDays(dayNumber);
+  const dayNumber = Number(day);
+  const events = Number.isNaN(dayNumber) ? [] : getEventByDays(dayNumber);
 
-  const preselectEvent = searchParams.get("event") || undefined;
+  const eventParam = searchParams.get("event");
+  const preselectEventId =
+    eventParam && !Number.isNaN(Number(eventParam))
+      ? Number(eventParam)
+      : undefined;
 
-  // Simulated "already registered" events for this user, for now frontend but backend work needed here
-  const alreadyRegisteredEventIds: string[] = ["Paper_Presentation"];
+  const alreadyRegisteredEventIds: number[] = [6];
 
   if (!events.length) {
     return (
@@ -32,9 +35,8 @@ export const RegistrationPage: React.FC = () => {
           id: e.id,
           name: e.name,
           image: e.image,
-          disabled: alreadyRegisteredEventIds.includes(e.id),
         }))}
-        defaultEventId={preselectEvent}
+        defaultEventId={preselectEventId}
         alreadyRegisteredEventIds={alreadyRegisteredEventIds}
         onSubmit={(data) =>
           console.log("SUBMIT DATA →", { day: dayNumber, ...data })
