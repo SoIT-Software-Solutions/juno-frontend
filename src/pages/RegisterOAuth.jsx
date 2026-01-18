@@ -10,16 +10,22 @@ function RegisterOAuth() {
   const testSession = async () => {
     try {
       const res = await fetch(`${backendAPI}/auth/user`, {
-        method: "GET",
         credentials: "include",
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        alert(`Logged in as: ${data.participant_name} (${data.email})`);
-      } else {
+      if (!res.ok) {
         alert("No user session found");
+        return;
       }
+
+      const data = await res.json();
+
+      if (!data.authenticated) {
+        alert("No user session found");
+        return;
+      }
+
+      alert(`Logged in as: ${data.user.participant_name} (${data.user.email})`);
     } catch (err) {
       console.error(err);
       alert("Error fetching user session");
