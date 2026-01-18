@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { apiClient } from "../../common/utils/apiClient";
 
 export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,13 +14,12 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
           window.location.href = `${import.meta.env.VITE_BACKEND_URL}/auth/google`;
         }
       } catch (err) {
-        console.error(err);
         window.location.href = `${import.meta.env.VITE_BACKEND_URL}/auth/google`;
       }
     };
 
     checkUser();
-  }, [navigate]);
+  }, []);
 
   if (loading) return <div>Checking registration...</div>;
 
