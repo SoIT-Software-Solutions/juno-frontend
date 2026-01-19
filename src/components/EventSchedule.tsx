@@ -8,7 +8,7 @@ export const EventSchedule: React.FC = () => {
   return (
     <section className="py-32 px-6">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-20">
-        <div className="card-glass p-12 rounded-[2.5rem] text-center">
+        <div className="bg-[var(--bg-glass-black)] backdrop-blur-[30px] p-12 rounded-[2.5rem] text-center">
           <h3 className="gold-text text-5xl font-black tracking-widest mb-14 uppercase">
             Day 1
           </h3>
@@ -26,7 +26,7 @@ export const EventSchedule: React.FC = () => {
           </div>
         </div>
 
-        <div className="card-glass p-12 rounded-[2.5rem] text-center">
+        <div className="bg-[var(--bg-glass-black)] backdrop-blur-[30px] p-12 rounded-[2.5rem] text-center">
           <h3 className="gold-text text-5xl font-black tracking-widest mb-14 uppercase">
             Day 2
           </h3>

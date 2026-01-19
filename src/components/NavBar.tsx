@@ -42,23 +42,42 @@ function Navbar() {
 
           {/* Mobile menu icon */}
           <div
-            className="md:hidden text-yellow-500 cursor-pointer"
+            className="md:hidden text-yellow-500 cursor-pointer transition-transform duration-300"
             onClick={toggleMobileMenu}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M4 8h16M4 16h16"
-              />
-            </svg>
+            {isMobileMenuOpen ? (
+              // Close icon
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              // Hamburger icon
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M4 8h16M4 16h16"
+                />
+              </svg>
+            )}
           </div>
         </div>
       </nav>
@@ -116,14 +135,10 @@ function Navbar() {
               onClick={closeMobileMenu}
             />
             <MobileNavLink
-              label="CONTACT US"
-              href="/contact"
+              label="TEAM"
+              href="/team"
               onClick={closeMobileMenu}
             />
-            <MobileNavLink label="ABOUT" href="/about" onClick={closeMobileMenu} />
-            <MobileNavLink label="EVENTS" href="/events" onClick={closeMobileMenu} />
-            <MobileNavLink label="GALLERY" href="/gallery" onClick={closeMobileMenu} />
-            <MobileNavLink label="TEAM" href="/team" onClick={closeMobileMenu} />
             {/* <MobileNavLink label="CONTACT US" href="/contact" onClick={closeMobileMenu} /> */}
           </div>
         </div>

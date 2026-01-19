@@ -18,11 +18,11 @@ export const StatsSection: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-10">
-          <SecBtn onClick={() => (window.location.href = "/rulebook")}>
-            Rulebook
+          <SecBtn onClick={() => (window.location.href = "/gallery")}>
+            Gallery
           </SecBtn>
-          <PriBtn onClick={() => (window.location.href = "/events")}>
-            Register Now
+          <PriBtn onClick={() => (window.location.href = "/team")}>
+            Team
           </PriBtn>
         </div>
       </div>
