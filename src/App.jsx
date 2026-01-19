@@ -21,7 +21,7 @@ import { Events } from "./pages/Events";
 import { GalleryPage } from "./pages/Gallery";
 import Team from "./pages/Team";
 import { AuthSuccess } from "./pages/AuthSuccess";
-import { apiClient } from "./apiClient";
+import { apiClient } from "./common/utils/apiClient";
 import { useEffect } from "react";
 
 function App() {
@@ -64,9 +64,9 @@ function App() {
             <Route
               path="/register/:day"
               element={
-                <ProtectedFormRoute>
-                  <RegistrationPage />
-                </ProtectedFormRoute>
+                // <ProtectedFormRoute>
+                <RegistrationPage />
+                // </ProtectedFormRoute>
               }
             />
             <Route path="/forms" element={<Navigate to="/events" replace />} />
