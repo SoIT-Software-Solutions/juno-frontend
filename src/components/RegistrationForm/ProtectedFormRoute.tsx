@@ -10,14 +10,16 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
     const checkUser = async () => {
       try {
         const res = await apiClient.get("/auth/user");
+        alert(res.data.message);
         if (res.status === 200) {
           setLoading(false);
         } else {
-          alert(res.status);
           navigate("/google", { replace: true });
         }
-      } catch (err) {
-        navigate("/google?err=" + err, { replace: true });
+      } catch (err: any) {
+        const msg = err.response?.data?.message || "Unknown error";
+        alert(msg);
+        navigate("/google", { replace: true });
       }
     };
 

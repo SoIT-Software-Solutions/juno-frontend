@@ -28,7 +28,7 @@ function App() {
   async function checkRefreshCookie() {
     try {
       const res = await apiClient.get("/auth/user");
-      console.log("User authenticated! Cookie exists and valid:", res.data);
+      // console.log("User authenticated! Cookie exists and valid:", res.data);
       alert("User authenticated! Cookie exists and valid");
     } catch (err) {
       console.log(
@@ -59,14 +59,12 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/events/:id" element={<EventDetails />} />
-            {/* <Route path="/forms/day1" element={<Day1RegForm />} />*/}
-            {/* <Route path="/forms/day2" element={<Day2RegForm />} />*/}
             <Route
               path="/register/:day"
               element={
-                // <ProtectedFormRoute>
-                <RegistrationPage />
-                // </ProtectedFormRoute>
+                <ProtectedFormRoute>
+                  <RegistrationPage />
+                </ProtectedFormRoute>
               }
             />
             <Route path="/forms" element={<Navigate to="/events" replace />} />

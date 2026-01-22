@@ -1,31 +1,24 @@
-import { useEffect, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { AuthToken } from "../common/utils/AuthToken";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const AuthSuccess = () => {
+export function AuthSuccess() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { setAccessToken } = useContext(AuthToken);
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const access = params.get("access");
+    const params = new URLSearchParams(window.location.search);
     const refresh = params.get("refresh");
+    const access = params.get("access");
 
-    if (access && refresh) {
-      setAccessToken(access);
-
-      document.cookie = `refresh_token=${refresh}; path=/; secure; sameSite=none`;
-
-      window.history.replaceState({}, document.title, "/");
-
-      navigate("/", { replace: true });
-
-      alert("Auth success");
-    } else {
+    if (!refresh || !access) {
       navigate("/google", { replace: true });
+      return;
     }
-  }, [location.search, navigate, setAccessToken]);
 
-  return <div>Logging you in.............</div>;
-};
+    localStorage.setItem("refresh_token", refresh);
+    localStorage.setItem("access_token", access);
+
+    navigate("/", { replace: true });
+  }, []);
+
+  return <div>Logging you in..............sybau</div>;
+}
