@@ -62,9 +62,9 @@ function App() {
             <Route
               path="/register/:day"
               element={
-                <ProtectedFormRoute>
-                  <RegistrationPage />
-                </ProtectedFormRoute>
+                // <ProtectedFormRoute>
+                <RegistrationPage />
+                // </ProtectedFormRoute>
               }
             />
             <Route path="/forms" element={<Navigate to="/events" replace />} />

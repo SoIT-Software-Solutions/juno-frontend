@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { getEventByDays } from "../common/utils/eventUtils";
 import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
+import { apiClient } from "../common/utils/apiClient";
 // import { EventType } from "../common/types/eventTypes";
 
 export const RegistrationPage: React.FC = () => {
@@ -18,6 +19,31 @@ export const RegistrationPage: React.FC = () => {
       : undefined;
 
   const alreadyRegisteredEventIds: number[] = [6];
+
+  const registrationFormOnSubmit = async (events: number[]) => {
+    try {
+      const res = await apiClient.post("/event/register", {
+        day_id: dayNumber,
+        event_Ids: events,
+      });
+
+      alert("Registered successfully");
+      console.log(res);
+    } catch (err: any) {
+      const status = err.response?.status;
+      const message = err.response?.data;
+
+      if (status == 409) {
+        alert(message);
+      } else if (status == 500) {
+        alert("Internal Server Error!");
+      } else {
+        alert("Something went wrong");
+      }
+
+      console.error("Registration error:", err);
+    }
+  };
 
   if (!events.length) {
     return (
@@ -38,9 +64,13 @@ export const RegistrationPage: React.FC = () => {
         }))}
         defaultEventId={preselectEventId}
         alreadyRegisteredEventIds={alreadyRegisteredEventIds}
-        onSubmit={(data) =>
-          console.log("SUBMIT DATA →", { day: dayNumber, ...data })
-        }
+        onSubmit={(data) => {
+          console.log("SUBMIT DATA →", {
+            day: dayNumber,
+            events: [data.events],
+          });
+          registrationFormOnSubmit(data.events);
+        }}
       />
     </div>
   );
