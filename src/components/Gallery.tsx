@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { SecBtn } from "./ui/SecBtn";
+import { PriBtn } from "./ui/PriBtn";
 
 interface GalleryProps {
   title: string;
@@ -63,6 +65,11 @@ export const Gallery: React.FC<GalleryProps> = ({ title, items }) => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-10">
+          <PriBtn onClick={() => (window.location.href = "/team")}>
+            View Full Gallery
+          </PriBtn>
         </div>
       </section>
 
