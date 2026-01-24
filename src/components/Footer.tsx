@@ -84,7 +84,7 @@ export const Footer: React.FC = () => {
 
         <div className="mt-32 pt-10 border-t border-white/5 text-center flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
           <p className="text-white/30 text-[10px] tracking-[0.4em] uppercase font-bold">
-            © 2024 JUNO Edition III. All Rights Reserved.
+            © 2026 JUNO Edition III. All Rights Reserved.
           </p>
         </div>
       </div>

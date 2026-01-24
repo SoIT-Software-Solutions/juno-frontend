@@ -67,7 +67,7 @@ export const Gallery: React.FC<GalleryProps> = ({ title, items }) => {
           ))}
         </div>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-10">
-          <PriBtn onClick={() => (window.location.href = "/team")}>
+          <PriBtn onClick={() => (window.location.href = "/gallery")}>
             View Full Gallery
           </PriBtn>
         </div>
