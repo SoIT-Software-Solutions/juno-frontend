@@ -36,7 +36,10 @@ export const Footer: React.FC = () => {
                 Location
               </h4>
               <br />
-              <a href="https://maps.app.goo.gl/336pieByUpv2UFrX8" className="text-white/70 text-base md:text-lg font-medium tracking-wide leading-relaxed">
+              <a
+                href="https://maps.app.goo.gl/336pieByUpv2UFrX8"
+                className="text-white/70 text-base md:text-lg font-medium tracking-wide leading-relaxed"
+              >
                 161, Guru Nanak Salai,
                 <br />
                 Velachery, Chennai - 600042
@@ -48,7 +51,9 @@ export const Footer: React.FC = () => {
                 Contact
               </h4>
               <p className="text-white/70 text-base md:text-lg font-medium tracking-wide leading-relaxed">
-                juno@gurunanakcollege.edu.in
+                <a href="mailto:juno@gurunanakcollege.edu.in">
+                  juno@gurunanakcollege.edu.in
+                </a>
               </p>
             </div>
           </div>
@@ -79,7 +84,7 @@ export const Footer: React.FC = () => {
 
         <div className="mt-32 pt-10 border-t border-white/5 text-center flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
           <p className="text-white/30 text-[10px] tracking-[0.4em] uppercase font-bold">
-            © 2024 JUNO Edition III. All Rights Reserved.
+            © 2026 JUNO Edition III. All Rights Reserved.
           </p>
         </div>
       </div>
@@ -93,7 +98,7 @@ const ContactPerson: React.FC<{
   phone: string;
   link?: string | undefined;
 }> = ({ name, role, phone, link }) => (
-  <a href={link} className="group mb-3">
+  <a href={`tel:${link}`} className="group mb-3">
     <h5 className="text-white font-black text-lg tracking-[0.15em] mb-1 uppercase group-hover:text-yellow-500 transition-colors">
       {name}
     </h5>

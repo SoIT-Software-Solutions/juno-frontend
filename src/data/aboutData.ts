@@ -26,6 +26,6 @@ export const aboutData = {
       institutions.
     </p>
   `,
-  galleryTitle: "Gallery",
+  galleryTitle: "Memorial Gallery",
   galleryItems: Array(8).fill(null),
 };

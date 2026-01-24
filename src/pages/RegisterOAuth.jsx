@@ -43,18 +43,24 @@ function RegisterOAuth() {
       </h1>
 
       <p className="mt-3 text-sm md:text-base text-white/60">
-        New users will be signed up automatically.
+        New users need to sign in with Google to register.
       </p>
 
       <div className="mt-10 flex flex-col gap-4">
         <button
           onClick={loginWithGoogle}
-          className="flex items-center justify-center gap-3 rounded-lg bg-white px-8 py-3 text-base font-medium
+          className="flex items-center justify-center rounded-lg bg-white px-12 py-4 text-[20px] font-medium
             text-gray-800 shadow-md transition hover:shadow-lg hover:bg-gray-50 active:scale-[0.98]"
         >
-          <span className="font-semibold">Google</span>
+          <span className="font-semibold">Sign in with Google</span>
         </button>
       </div>
+      <p className="mt-3 text-sm md:text-base text-white/60">
+        <br />
+        We only use your Google account to verify your identity and register you for the event.
+        <br />
+        We will never share your data with third parties. Your data is secure with us.
+      </p>
     </section>
   );
 }
