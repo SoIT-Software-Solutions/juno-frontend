@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { getEventByDays } from "../common/utils/eventUtils";
 import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
 import { apiClient } from "../common/utils/apiClient";
-// import { EventType } from "../common/types/eventTypes";
 
 export const RegistrationPage: React.FC = () => {
   const { day } = useParams<{ day: string }>();
@@ -18,30 +17,56 @@ export const RegistrationPage: React.FC = () => {
       ? Number(eventParam)
       : undefined;
 
-  const alreadyRegisteredEventIds: number[] = [6];
+  const [alreadyRegisteredEventIds, setAlreadyRegisteredEventIds] = useState<
+    number[]
+  >([]);
+  const [loadingRegistrations, setLoadingRegistrations] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (Number.isNaN(dayNumber)) return;
+
+    const fetchRegistrations = async () => {
+      setLoadingRegistrations(true);
+      try {
+        const res = await apiClient.get(`/event/registrations/${dayNumber}`);
+        setAlreadyRegisteredEventIds(res.data?.event_ids ?? []);
+      } catch (err) {
+        console.error("Failed to fetch registrations", err);
+      } finally {
+        setLoadingRegistrations(false);
+      }
+    };
+
+    fetchRegistrations();
+  }, [dayNumber]);
 
   const registrationFormOnSubmit = async (events: number[]) => {
+    setSubmitting(true);
     try {
-      const res = await apiClient.post("/event/register", {
+      await apiClient.post("/event/register", {
         day_id: dayNumber,
         event_Ids: events,
       });
 
-      alert("Registered successfully");
-      console.log(res);
+      const res = await apiClient.get(`/event/registrations/${dayNumber}`);
+      setAlreadyRegisteredEventIds(res.data?.event_ids ?? []);
+
+      alert("Registered successfully!");
     } catch (err: any) {
       const status = err.response?.status;
-      const message = err.response?.data;
+      const message = err.response?.data?.message || "Something went wrong";
 
       if (status == 409) {
         alert(message);
       } else if (status == 500) {
         alert("Internal Server Error!");
       } else {
-        alert("Something went wrong");
+        alert(message);
       }
-
       console.error("Registration error:", err);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -51,6 +76,10 @@ export const RegistrationPage: React.FC = () => {
         Invalid registration link
       </div>
     );
+  }
+
+  if (loadingRegistrations) {
+    return <div className="pt-40 text-center text-white">Loading Form</div>;
   }
 
   return (
@@ -64,13 +93,8 @@ export const RegistrationPage: React.FC = () => {
         }))}
         defaultEventId={preselectEventId}
         alreadyRegisteredEventIds={alreadyRegisteredEventIds}
-        onSubmit={(data) => {
-          console.log("SUBMIT DATA →", {
-            day: dayNumber,
-            events: [data.events],
-          });
-          registrationFormOnSubmit(data.events);
-        }}
+        submitting={submitting}
+        onSubmit={(data) => registrationFormOnSubmit(data.events)}
       />
     </div>
   );

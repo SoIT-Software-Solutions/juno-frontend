@@ -9,6 +9,7 @@ type Props = {
   events: EventItem[];
   defaultEventId?: number;
   alreadyRegisteredEventIds?: number[];
+  submitting?: boolean;
   onSubmit: (data: RegistrationData) => void;
 };
 
@@ -17,6 +18,7 @@ export const RegistrationForm: React.FC<Props> = ({
   events,
   defaultEventId,
   alreadyRegisteredEventIds = [],
+  submitting = false,
   onSubmit,
 }) => {
   const [data, setData] = useState<RegistrationData>({
@@ -45,11 +47,9 @@ export const RegistrationForm: React.FC<Props> = ({
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-
     const filteredEvents = data.events.filter(
       (id) => !alreadyRegisteredEventIds.includes(id),
     );
-
     onSubmit({ ...data, events: filteredEvents });
   };
 
@@ -98,7 +98,7 @@ export const RegistrationForm: React.FC<Props> = ({
         otherValue={data.otherYear}
         onOtherChange={(v) => update("otherYear", v)}
       />
-      {/*Temp fix here, need to remove any and work on it*/}
+
       <EventSelector
         events={events.map((e) => ({
           ...e,
@@ -111,9 +111,36 @@ export const RegistrationForm: React.FC<Props> = ({
       <div className="flex justify-center pt-10">
         <button
           type="submit"
-          className="primary-btn px-20 py-5 rounded-xl uppercase tracking-widest"
+          disabled={submitting}
+          className="primary-btn px-20 py-5 rounded-xl uppercase tracking-widest flex items-center justify-center gap-3"
         >
-          Submit Registration
+          {submitting ? (
+            <>
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                ></path>
+              </svg>
+              Submitting...
+            </>
+          ) : (
+            "Submit Registration"
+          )}
         </button>
       </div>
     </form>
