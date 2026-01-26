@@ -26,6 +26,14 @@ export const RegistrationPage: React.FC = () => {
   useEffect(() => {
     if (Number.isNaN(dayNumber)) return;
 
+    const fetchProfile = async () => {
+      try {
+        const res = await apiClient.get(`/profile/participant`);
+        alert(res.data);
+        console.log(res.data);
+      } catch (err) {}
+    };
+
     const fetchRegistrations = async () => {
       setLoadingRegistrations(true);
       try {
@@ -38,6 +46,7 @@ export const RegistrationPage: React.FC = () => {
       }
     };
 
+    fetchProfile();
     fetchRegistrations();
   }, [dayNumber]);
 

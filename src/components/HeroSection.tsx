@@ -23,7 +23,7 @@ export const Hero: React.FC = () => {
       setTimeLeft({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
         hours: Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         ),
         min: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         sec: Math.floor((distance % (1000 * 60)) / 1000),
@@ -48,7 +48,7 @@ export const Hero: React.FC = () => {
               className="w-[900px] h-auto object-contain"
               alt="JUNO Peacock Logo"
             />
-            {/* Crown addition simulation via absolute positioning if needed, 
+            {/* Crown addition simulation via absolute positioning if needed,
                 but high brightness peacock already provides a very similar look */}
           </div>
         </div>
@@ -65,8 +65,12 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col space-y-6 items-center justify-center">
             {/* Registration Buttons */}
             <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6 w-full lg:justify-end">
-              <SecBtn onClick={() => (window.location.href = "/forms/day1")}>Day 1 Registration</SecBtn>
-              <SecBtn onClick={() => (window.location.href = "/forms/day2")}>Day 2 Registration</SecBtn>
+              <SecBtn onClick={() => (window.location.href = "/register/1")}>
+                Day 1 Registration
+              </SecBtn>
+              <SecBtn onClick={() => (window.location.href = "/register/2")}>
+                Day 2 Registration
+              </SecBtn>
             </div>
 
             {/* Rule Book Link */}
@@ -75,7 +79,7 @@ export const Hero: React.FC = () => {
                 Rule Book
               </TriBtn>
             </div>
-          </div>  
+          </div>
         </div>
       </div>
 
