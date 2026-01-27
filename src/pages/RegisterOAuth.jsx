@@ -14,21 +14,21 @@ function RegisterOAuth() {
       });
 
       if (!res.ok) {
-        alert("No user session found");
+        // alert("No user session found");
         return;
       }
 
       const data = await res.json();
 
       if (!data.authenticated) {
-        alert("No user session found");
+        // alert("No user session found");
         return;
       }
 
-      alert(`Logged in as: ${data.user.participant_name} (${data.user.email})`);
+      // alert(`Logged in as: ${data.user.participant_name} (${data.user.email})`);
     } catch (err) {
       console.error(err);
-      alert("Error fetching user session");
+      // alert("Error fetching user session");
     }
   };
 
@@ -57,9 +57,11 @@ function RegisterOAuth() {
       </div>
       <p className="mt-3 text-sm md:text-base text-white/60">
         <br />
-        We only use your Google account to verify your identity and register you for the event.
+        We only use your Google account to verify your identity and register you
+        for the event.
         <br />
-        We will never share your data with third parties. Your data is secure with us.
+        We will never share your data with third parties. Your data is secure
+        with us.
       </p>
     </section>
   );

@@ -29,13 +29,13 @@ function App() {
     try {
       const res = await apiClient.get("/auth/user");
       // console.log("User authenticated! Cookie exists and valid:", res.data);
-      alert("User authenticated! Cookie exists and valid");
+      // alert("User authenticated! Cookie exists and valid");
     } catch (err) {
       console.log(
         "No valid cookie / user not authenticated:",
         err.response?.status,
       );
-      alert("No valid cookie / user not authenticated");
+      // alert("No valid cookie / user not authenticated");
     }
   }
 
