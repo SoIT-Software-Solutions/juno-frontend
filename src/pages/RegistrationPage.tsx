@@ -3,6 +3,18 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { getEventByDays } from "../common/utils/eventUtils";
 import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
 import { apiClient } from "../common/utils/apiClient";
+import { RegistrationData } from "../common/types/eventTypes";
+
+const normalizeProfile = (data: any): RegistrationData => ({
+  name: data.participant_name ?? "",
+  phone: data.contact_number ?? "",
+  college: data.college_name ?? "",
+  department: data.department ?? "",
+  email: data.email ?? "",
+  academicYear: data.academic_year ?? "",
+  otherYear: "",
+  events: [],
+});
 
 export const RegistrationPage: React.FC = () => {
   const { day } = useParams<{ day: string }>();
@@ -12,59 +24,72 @@ export const RegistrationPage: React.FC = () => {
   const events = Number.isNaN(dayNumber) ? [] : getEventByDays(dayNumber);
 
   const eventParam = searchParams.get("event");
-  const preselectEventId =
-    eventParam && !Number.isNaN(Number(eventParam))
-      ? Number(eventParam)
-      : undefined;
+  const preselectEventId = eventParam ? Number(eventParam) : undefined;
 
+  const [profile, setProfile] = useState<RegistrationData | null>(null);
+  const [profileLocked, setProfileLocked] = useState(false);
   const [alreadyRegisteredEventIds, setAlreadyRegisteredEventIds] = useState<
     number[]
   >([]);
-  const [loadingRegistrations, setLoadingRegistrations] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (Number.isNaN(dayNumber)) return;
 
-    const fetchRegistrations = async () => {
-      setLoadingRegistrations(true);
+    const load = async () => {
+      setLoading(true);
       try {
-        const res = await apiClient.get(`/event/registrations/${dayNumber}`);
-        setAlreadyRegisteredEventIds(res.data?.event_ids ?? []);
-      } catch (err) {
-        console.error("Failed to fetch registrations", err);
+        const [profileRes, regRes] = await Promise.all([
+          apiClient.get("/profile/participant"),
+          apiClient.get(`/event/registrations/${dayNumber}`),
+        ]);
+
+        setProfile(normalizeProfile(profileRes.data));
+        setProfileLocked(Boolean(profileRes.data.college_name));
+        setAlreadyRegisteredEventIds(regRes.data?.event_ids ?? []);
       } finally {
-        setLoadingRegistrations(false);
+        setLoading(false);
       }
     };
 
-    fetchRegistrations();
+    load();
   }, [dayNumber]);
 
-  const registrationFormOnSubmit = async (events: number[]) => {
+  const handleSubmit = async (data: RegistrationData) => {
     setSubmitting(true);
     try {
-      await apiClient.post("/event/register", {
-        day_id: dayNumber,
-        event_Ids: events,
-      });
+      if (data.events.length > 0) {
+        await apiClient.post(`/event/register`, {
+          day_id: dayNumber,
+          event_Ids: data.events,
+        });
 
-      const res = await apiClient.get(`/event/registrations/${dayNumber}`);
-      setAlreadyRegisteredEventIds(res.data?.event_ids ?? []);
-
-      alert("Registered successfully!");
-    } catch (err: any) {
-      const status = err.response?.status;
-      const message = err.response?.data?.message || "Something went wrong";
-
-      if (status == 409) {
-        alert(message);
-      } else if (status == 500) {
-        alert("Internal Server Error!");
-      } else {
-        alert(message);
+        setAlreadyRegisteredEventIds((prev) => [...prev, ...data.events]);
       }
-      console.error("Registration error:", err);
+
+      if (!profileLocked) {
+        console.log(data.college);
+        console.log(data.department);
+        console.log(data.academicYear);
+        console.log(data.phone);
+        console.log(data.name);
+        await apiClient.post("/profile/participant/update", {
+          participant_name: data.name,
+          college_name: data.college,
+          department: data.department,
+          academic_year:
+            data.academicYear === "others" ? data.otherYear : data.academicYear,
+          contact_number: data.phone,
+        });
+
+        setProfileLocked(true);
+      }
+
+      alert("Submission success!");
+    } catch (err) {
+      console.error(err);
+      alert("Submission failed");
     } finally {
       setSubmitting(false);
     }
@@ -72,29 +97,30 @@ export const RegistrationPage: React.FC = () => {
 
   if (!events.length) {
     return (
-      <div className="pt-40 text-center text-white">
-        Invalid registration link
+      <div className="pt-40 text-center text-white min-h-screen">
+        Invalid link
       </div>
     );
   }
 
-  if (loadingRegistrations) {
-    return <div className="pt-40 text-center text-white">Loading Form</div>;
+  if (loading || !profile) {
+    return (
+      <div className="pt-40 text-center text-white min-h-screen">Loading…</div>
+    );
   }
 
   return (
     <div className="pt-28 pb-20 px-6 lg:px-20 min-h-screen">
       <RegistrationForm
         title={`Day ${dayNumber} Registration`}
-        events={events.map((e) => ({
-          id: e.id,
-          name: e.name,
-          image: e.image,
-        }))}
+        events={events}
         defaultEventId={preselectEventId}
         alreadyRegisteredEventIds={alreadyRegisteredEventIds}
+        formData={profile}
+        profileLocked={profileLocked}
         submitting={submitting}
-        onSubmit={(data) => registrationFormOnSubmit(data.events)}
+        onFormChange={setProfile}
+        onSubmit={handleSubmit}
       />
     </div>
   );

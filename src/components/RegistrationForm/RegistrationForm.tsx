@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { RegistrationData } from "../../common/types/eventTypes";
 import { FormInput } from "./FormInput";
 import { AcademicYearSelector } from "./AcademicYearSelector";
@@ -10,6 +10,10 @@ type Props = {
   defaultEventId?: number;
   alreadyRegisteredEventIds?: number[];
   submitting?: boolean;
+
+  formData: RegistrationData;
+  profileLocked: boolean;
+  onFormChange: (data: RegistrationData) => void;
   onSubmit: (data: RegistrationData) => void;
 };
 
@@ -19,38 +23,64 @@ export const RegistrationForm: React.FC<Props> = ({
   defaultEventId,
   alreadyRegisteredEventIds = [],
   submitting = false,
+  formData,
+  profileLocked,
+  onFormChange,
   onSubmit,
 }) => {
-  const [data, setData] = useState<RegistrationData>({
-    name: "",
-    phone: "",
-    college: "",
-    department: "",
-    email: "",
-    academicYear: "",
-    otherYear: "",
-    events: [],
-  });
-
   useEffect(() => {
     const preselected = [
       ...(defaultEventId ? [defaultEventId] : []),
       ...alreadyRegisteredEventIds,
     ];
-    const uniqueEvents = Array.from(new Set(preselected));
-    setData((prev) => ({ ...prev, events: uniqueEvents }));
+
+    onFormChange({
+      ...formData,
+      events: Array.from(new Set(preselected)),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultEventId, alreadyRegisteredEventIds]);
 
-  const update = (key: keyof RegistrationData, value: string | string[]) => {
-    setData((prev) => ({ ...prev, [key]: value }));
+  const update = (key: keyof RegistrationData, value: any) => {
+    onFormChange({ ...formData, [key]: value });
+  };
+  // Func which took from stackoverflow, this basically makes sure the input field data aren't empty before submission
+  // Contact number is 10 in length
+  const validateForm = (): { valid: boolean; message?: string } => {
+    if (!formData.name.trim())
+      return { valid: false, message: "Name is required" };
+    if (!formData.phone.trim())
+      return { valid: false, message: "Contact number is required" };
+    if (!/^\d{10}$/.test(formData.phone))
+      return { valid: false, message: "Contact number must be 10 digits" };
+    if (!formData.college.trim())
+      return { valid: false, message: "College is required" };
+    if (!formData.department.trim())
+      return { valid: false, message: "Department is required" };
+    if (!formData.academicYear.trim())
+      return { valid: false, message: "Academic year is required" };
+    if (formData.academicYear === "others" && !formData.otherYear.trim())
+      return { valid: false, message: "Please specify your year" };
+    if (formData.events.length === 0)
+      return { valid: false, message: "Select at least one event" };
+
+    return { valid: true };
   };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const filteredEvents = data.events.filter(
+
+    const validation = validateForm();
+    if (!validation.valid) {
+      alert(validation.message);
+      return;
+    }
+
+    const newEvents = formData.events.filter(
       (id) => !alreadyRegisteredEventIds.includes(id),
     );
-    onSubmit({ ...data, events: filteredEvents });
+
+    onSubmit({ ...formData, events: newEvents });
   };
 
   return (
@@ -63,39 +93,49 @@ export const RegistrationForm: React.FC<Props> = ({
         <FormInput
           label="Name"
           placeholder="Enter your name"
-          value={data.name}
+          value={formData.name}
+          disabled={profileLocked}
           onChange={(v) => update("name", v)}
         />
+
         <FormInput
           label="Contact Number"
           placeholder="Enter your number"
-          value={data.phone}
+          value={formData.phone}
+          disabled={profileLocked}
           onChange={(v) => update("phone", v)}
         />
+
         <FormInput
           label="College"
           placeholder="Enter your college"
-          value={data.college}
+          value={formData.college}
+          disabled={profileLocked}
           onChange={(v) => update("college", v)}
         />
+
         <FormInput
           label="Department"
           placeholder="Enter your department"
-          value={data.department}
+          value={formData.department}
+          disabled={profileLocked}
           onChange={(v) => update("department", v)}
         />
+
         <FormInput
           label="Email"
-          placeholder="Enter your email"
-          value={data.email}
-          onChange={(v) => update("email", v)}
+          placeholder="Your email"
+          value={formData.email}
+          disabled
+          onChange={() => {}}
         />
       </div>
 
       <AcademicYearSelector
-        value={data.academicYear}
+        value={formData.academicYear}
+        disabled={profileLocked}
         onChange={(v) => update("academicYear", v)}
-        otherValue={data.otherYear}
+        otherValue={formData.otherYear}
         onOtherChange={(v) => update("otherYear", v)}
       />
 
@@ -104,23 +144,22 @@ export const RegistrationForm: React.FC<Props> = ({
           ...e,
           disabled: alreadyRegisteredEventIds.includes(e.id),
         }))}
-        selected={data.events}
-        onChange={(v: any) => update("events", v)}
+        selected={formData.events}
+        onChange={(v) => update("events", v)}
       />
-
+      {/*Loading animation taken chatGPT, if any error make sure to prompt it while giving enough content*/}
       <div className="flex justify-center pt-10">
         <button
           type="submit"
           disabled={submitting}
-          className="primary-btn px-20 py-5 rounded-xl uppercase tracking-widest flex items-center justify-center gap-3"
+          className="primary-btn px-20 py-5 rounded-xl uppercase tracking-widest flex items-center gap-3"
         >
           {submitting ? (
             <>
               <svg
-                className="animate-spin h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
+                className="animate-spin h-5 w-5"
                 viewBox="0 0 24 24"
+                fill="none"
               >
                 <circle
                   className="opacity-25"
@@ -129,12 +168,12 @@ export const RegistrationForm: React.FC<Props> = ({
                   r="10"
                   stroke="currentColor"
                   strokeWidth="4"
-                ></circle>
+                />
                 <path
                   className="opacity-75"
                   fill="currentColor"
                   d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
-                ></path>
+                />
               </svg>
               Submitting...
             </>

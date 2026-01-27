@@ -6,6 +6,7 @@ type Props = {
   onChange: (v: string) => void;
   otherValue: string;
   onOtherChange: (v: string) => void;
+  disabled?: boolean;
 };
 
 const YEARS = [
@@ -23,6 +24,7 @@ export const AcademicYearSelector: React.FC<Props> = ({
   onChange,
   otherValue,
   onOtherChange,
+  disabled = false,
 }) => (
   <div className="space-y-6">
     <h3 className="text-sm font-black tracking-[0.2em] text-white uppercase">
@@ -33,19 +35,28 @@ export const AcademicYearSelector: React.FC<Props> = ({
       {YEARS.map((y) => (
         <label
           key={y.value}
-          className="flex items-center space-x-3 cursor-pointer"
+          className={`flex items-center gap-3
+            ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
         >
           <input
             type="radio"
-            className="hidden"
+            name="academicYear"
+            value={y.value}
             checked={value === y.value}
-            onChange={() => onChange(y.value)}
+            disabled={disabled}
+            onChange={(e) => onChange(e.target.value)}
+            className="
+              w-5 h-5 rounded-full
+              appearance-none border-2 border-white
+              checked:border-[var(--gold)]
+              checked:bg-[var(--gold)]
+              transition-colors
+            "
           />
-          <div
-            className={`w-5 h-5 rounded-full border-2 ${value === y.value ? "border-[var(--gold)]" : "border-white"}`}
-          />
+
           <span
-            className={`text-xs font-bold uppercase ${value === y.value ? "text-[var(--gold)]" : "text-white"}`}
+            className={`text-xs font-bold uppercase transition-colors
+              ${value === y.value ? "text-[var(--gold)]" : "text-white"}`}
           >
             {y.label}
           </span>
@@ -59,9 +70,16 @@ export const AcademicYearSelector: React.FC<Props> = ({
           label="Specify Other"
           placeholder="ENTER YOUR YEAR / DESIGNATION"
           value={otherValue}
+          disabled={disabled}
           onChange={onOtherChange}
         />
       </div>
+    )}
+
+    {disabled && (
+      <p className="text-xs text-white/40">
+        To edit academic year, go to Profile
+      </p>
     )}
   </div>
 );
