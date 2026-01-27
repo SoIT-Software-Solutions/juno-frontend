@@ -78,7 +78,7 @@ export const AcademicYearSelector: React.FC<Props> = ({
 
     {disabled && (
       <p className="text-xs text-white/40">
-        To edit academic year, go to Profile
+        To edit your personal data, go to Profile
       </p>
     )}
   </div>
