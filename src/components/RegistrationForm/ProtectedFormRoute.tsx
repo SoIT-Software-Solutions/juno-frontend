@@ -10,7 +10,7 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
     const checkUser = async () => {
       try {
         const res = await apiClient.get("/auth/user");
-        alert(res.data.message);
+        // alert(res.data.message);
         if (res.status === 200) {
           setLoading(false);
         } else {
@@ -18,7 +18,7 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
         }
       } catch (err: any) {
         const msg = err.response?.data?.message || "Unknown error";
-        alert(msg);
+        // alert(msg);
         navigate("/google", { replace: true });
       }
     };
@@ -26,7 +26,12 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
     checkUser();
   }, [navigate]);
 
-  if (loading) return <div>Checking registration...</div>;
+  if (loading)
+    return (
+      <div className="pt-40 text-center text-white min-h-screen">
+        Checking form access...
+      </div>
+    );
 
   return children;
 };
