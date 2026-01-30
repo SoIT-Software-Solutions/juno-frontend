@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <div>
-              <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black uppercase mb-6">
+              <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black uppercase mb-10">
                 Contact
               </h4>
               <a
