@@ -1,34 +1,115 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 
-export const StatsSection: React.FC = () => {
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
+
+const staggered = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const formatStat = (value: number, type?: "prize" | "stall") => {
+  if (type === "prize") return `${value}k+`;
+  if (type === "stall") return `${value}+`;
+  return value;
+};
+
+const Counter: React.FC<{
+  target: number;
+  start: boolean;
+  type?: "prize" | "stall";
+}> = ({ target, start, type }) => {
+  const [count, setCount] = useState(0);
+  const startRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!start) {
+      setCount(0);
+      startRef.current = null;
+      return;
+    }
+
+    const duration = 5000;
+    const step = (timestamp: number) => {
+      if (!startRef.current) startRef.current = timestamp;
+      const progress = timestamp - startRef.current;
+      const next = Math.min(target, Math.floor((progress / duration) * target));
+      setCount(next);
+      if (next < target) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  }, [start, target]);
+
   return (
-    <section className="px-6 w-full flex flex-col items-center justify-center relative">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="mt-20 font-hanora text-5xl md:text-7xl font-black gold-text tracking-[0.2em] mb-16 uppercase">
-          Events
-        </h2>
-
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          <StatItem value="2" label="DAYS" />
-          <StatItem value="16" label="EVENTS" />
-          <StatItem value="1L+" label="PRIZES" />
-          <StatItem value="20+" label="STALLS" />
-        </div>
-      </div>
-    </section>
+    <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-500">
+      {formatStat(count, type)}
+    </motion.h2>
   );
 };
 
-const StatItem: React.FC<{ value: string; label: string }> = ({
-  value,
-  label,
-}) => (
-  <div className="font-kirsty font-medium flex flex-col items-center justify-center group p-6 md:p-8 rounded-2xl transition-all duration-500 hover:bg-white/[0.02]">
-    <span className="text-4xl sm:text-5xl md:text-[4.5rem] font-black text-yellow-500 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_30px_rgba(234,179,8,0.4)]">
-      {value}
-    </span>
-    <span className="text-xs sm:text-sm md:text-sm tracking-[0.4em] font-black text-white/60 mt-4 uppercase transition-colors group-hover:text-white/90">
-      {label}
-    </span>
-  </div>
-);
+const StatsSection: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [countStart, setCountStart] = useState(false);
+
+  const stats = [
+    { label: "Days", value: 2 },
+    { label: "Events", value: 16 },
+    { label: "Prizes", value: 100, type: "prize" },
+    { label: "Stalls", value: 20, type: "stall" },
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setCountStart(entry.isIntersecting),
+      { threshold: 0.3 },
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.section
+      ref={sectionRef}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false }}
+      variants={staggered}
+      className="px-6 py-12 flex flex-col items-center w-full"
+    >
+      <motion.h1
+        variants={fadeUp}
+        className="text-white/70 font-bold text-3xl sm:text-4xl md:text-5xl text-center mb-12"
+      >
+        Events
+      </motion.h1>
+
+      <motion.div
+        variants={staggered}
+        className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 w-full max-w-5xl text-center"
+      >
+        {stats.map((stat, idx) => (
+          <motion.div
+            key={idx}
+            variants={fadeUp}
+            className="flex flex-col items-center"
+          >
+            <Counter
+              target={stat.value}
+              start={countStart}
+              type={stat.type as any}
+            />
+            <p className="text-sm md:text-base text-white/70 uppercase mt-2">
+              {stat.label}
+            </p>
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.section>
+  );
+};
+
+export default StatsSection;
