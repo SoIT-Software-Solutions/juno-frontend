@@ -58,7 +58,7 @@ const StatsSection: React.FC = () => {
   const stats = [
     { label: "Days", value: 2 },
     { label: "Events", value: 16 },
-    { label: "Prizes", value: 100, type: "prize" },
+    { label: "Cash Prize", value: 100, type: "prize" },
     { label: "Stalls", value: 20, type: "stall" },
   ];
 
