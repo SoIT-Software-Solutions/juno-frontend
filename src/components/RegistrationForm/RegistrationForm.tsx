@@ -12,7 +12,7 @@ type Props = {
   submitting?: boolean;
 
   formData: RegistrationData;
-  profileLocked: boolean;
+  // profileLocked: boolean;
   onFormChange: (data: RegistrationData) => void;
   onSubmit: (data: RegistrationData) => void;
 };
@@ -24,7 +24,6 @@ export const RegistrationForm: React.FC<Props> = ({
   alreadyRegisteredEventIds = [],
   submitting = false,
   formData,
-  profileLocked,
   onFormChange,
   onSubmit,
 }) => {
@@ -94,7 +93,6 @@ export const RegistrationForm: React.FC<Props> = ({
           label="Name"
           placeholder="Enter your name"
           value={formData.name}
-          disabled={profileLocked}
           onChange={(v) => update("name", v)}
         />
 
@@ -102,7 +100,6 @@ export const RegistrationForm: React.FC<Props> = ({
           label="Contact Number"
           placeholder="Enter your number"
           value={formData.phone}
-          disabled={profileLocked}
           onChange={(v) => update("phone", v)}
         />
 
@@ -110,7 +107,6 @@ export const RegistrationForm: React.FC<Props> = ({
           label="College"
           placeholder="Enter your college"
           value={formData.college}
-          disabled={profileLocked}
           onChange={(v) => update("college", v)}
         />
 
@@ -118,7 +114,6 @@ export const RegistrationForm: React.FC<Props> = ({
           label="Department"
           placeholder="Enter your department"
           value={formData.department}
-          disabled={profileLocked}
           onChange={(v) => update("department", v)}
         />
 
@@ -126,14 +121,13 @@ export const RegistrationForm: React.FC<Props> = ({
           label="Email"
           placeholder="Your email"
           value={formData.email}
-          disabled
+          disabled={true}
           onChange={() => {}}
         />
       </div>
 
       <AcademicYearSelector
         value={formData.academicYear}
-        disabled={profileLocked}
         onChange={(v) => update("academicYear", v)}
         otherValue={formData.otherYear}
         onOtherChange={(v) => update("otherYear", v)}

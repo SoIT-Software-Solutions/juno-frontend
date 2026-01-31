@@ -25,61 +25,74 @@ export const AcademicYearSelector: React.FC<Props> = ({
   otherValue,
   onOtherChange,
   disabled = false,
-}) => (
-  <div className="space-y-6">
-    <h3 className="text-sm font-black tracking-[0.2em] text-white uppercase">
-      Academic Year
-    </h3>
+}) => {
+  const isKnownYear = YEARS.some((y) => y.value === value);
+  const isOthers = !isKnownYear;
 
-    <div className="flex flex-wrap gap-8">
-      {YEARS.map((y) => (
-        <label
-          key={y.value}
-          className={`flex items-center gap-3
-            ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
-        >
-          <input
-            type="radio"
-            name="academicYear"
-            value={y.value}
-            checked={value === y.value}
-            disabled={disabled}
-            onChange={(e) => onChange(e.target.value)}
-            className="
-              w-5 h-5 rounded-full
-              appearance-none border-2 border-white
-              checked:border-[var(--gold)]
-              checked:bg-[var(--gold)]
-              transition-colors
-            "
-          />
+  return (
+    <div className="space-y-6">
+      <h3 className="text-sm font-black tracking-[0.2em] text-white uppercase">
+        Academic Year
+      </h3>
 
-          <span
-            className={`text-xs font-bold uppercase transition-colors
-              ${value === y.value ? "text-[var(--gold)]" : "text-white"}`}
+      <div className="flex flex-wrap gap-8">
+        {YEARS.map((y) => (
+          <label
+            key={y.value}
+            className={`flex items-center gap-3 ${
+              disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            }`}
           >
-            {y.label}
-          </span>
-        </label>
-      ))}
-    </div>
+            <input
+              type="radio"
+              name="academicYear"
+              value={y.value}
+              disabled={disabled}
+              checked={y.value === "others" ? isOthers : value === y.value}
+              onChange={(e) => {
+                const v = e.target.value;
+                if (v === "others") {
+                  onChange(otherValue || "");
+                } else {
+                  onChange(v);
+                }
+              }}
+              className="
+                w-5 h-5 rounded-full
+                appearance-none border-2 border-white
+                checked:border-[var(--gold)]
+                checked:bg-[var(--gold)]
+                transition-colors
+              "
+            />
 
-    {value === "others" && (
-      <div className="max-w-md pt-4">
-        <FormInput
-          label="Specify Other"
-          placeholder="ENTER YOUR YEAR / DESIGNATION"
-          value={otherValue}
-          disabled={disabled}
-          onChange={onOtherChange}
-        />
+            <span
+              className={`text-xs font-bold uppercase transition-colors ${
+                (y.value === "others" && isOthers) || value === y.value
+                  ? "text-[var(--gold)]"
+                  : "text-white"
+              }`}
+            >
+              {y.label}
+            </span>
+          </label>
+        ))}
       </div>
-    )}
 
-    {disabled && (
-      <p className="text-xs text-white/40">
-        To edit your personal data, go to Profile
-      </p>
-    )}
-  </div>
-);
+      {isOthers && (
+        <div className="max-w-md pt-4">
+          <FormInput
+            label="Specify Other"
+            placeholder="ENTER YOUR YEAR / DESIGNATION"
+            value={value}
+            disabled={disabled}
+            onChange={(v) => {
+              onOtherChange(v);
+              onChange(v);
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
