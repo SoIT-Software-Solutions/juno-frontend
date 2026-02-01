@@ -8,6 +8,10 @@ type Props = {
   disabled?: boolean;
 };
 
+const canDisabled = (lable: string) => {
+  return lable == "Email" ? true : false;
+};
+
 export const FormInput: React.FC<Props> = ({
   label,
   placeholder,
@@ -24,7 +28,7 @@ export const FormInput: React.FC<Props> = ({
       type="text"
       placeholder={placeholder}
       value={value}
-      disabled={disabled}
+      disabled={canDisabled(label)}
       onChange={(e) => onChange(e.target.value)}
       className={`rounded-xl px-6 py-5 text-xs tracking-[0.2em] font-bold outline-none transition-all
         ${

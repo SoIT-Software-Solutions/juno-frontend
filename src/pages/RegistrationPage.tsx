@@ -27,7 +27,7 @@ export const RegistrationPage: React.FC = () => {
   const preselectEventId = eventParam ? Number(eventParam) : undefined;
 
   const [profile, setProfile] = useState<RegistrationData | null>(null);
-  const [profileLocked, setProfileLocked] = useState(false);
+  // const [profileLocked, setProfileLocked] = useState(false);
   const [alreadyRegisteredEventIds, setAlreadyRegisteredEventIds] = useState<
     number[]
   >([]);
@@ -46,7 +46,7 @@ export const RegistrationPage: React.FC = () => {
         ]);
 
         setProfile(normalizeProfile(profileRes.data));
-        setProfileLocked(Boolean(profileRes.data.college_name));
+        // setProfileLocked(Boolean(profileRes.data.college_name));
         setAlreadyRegisteredEventIds(regRes.data?.event_ids ?? []);
       } finally {
         setLoading(false);
@@ -68,23 +68,25 @@ export const RegistrationPage: React.FC = () => {
         setAlreadyRegisteredEventIds((prev) => [...prev, ...data.events]);
       }
 
-      if (!profileLocked) {
-        console.log(data.college);
-        console.log(data.department);
-        console.log(data.academicYear);
-        console.log(data.phone);
-        console.log(data.name);
-        await apiClient.post("/profile/participant/update", {
-          participant_name: data.name,
-          college_name: data.college,
-          department: data.department,
-          academic_year:
-            data.academicYear === "others" ? data.otherYear : data.academicYear,
-          contact_number: data.phone,
-        });
+      // if (!profileLocked) {
+      //   console.log(data.college);
+      //   console.log(data.department);
+      //   console.log(data.academicYear);
+      //   console.log(data.phone);
+      //   console.log(data.name);
 
-        setProfileLocked(true);
-      }
+      //   setProfileLocked(true);
+      // }
+      //
+
+      await apiClient.post("/profile/participant/update", {
+        participant_name: data.name,
+        college_name: data.college,
+        department: data.department,
+        academic_year:
+          data.academicYear === "others" ? data.otherYear : data.academicYear,
+        contact_number: data.phone,
+      });
 
       alert("Submission success!");
     } catch (err) {
@@ -117,7 +119,6 @@ export const RegistrationPage: React.FC = () => {
         defaultEventId={preselectEventId}
         alreadyRegisteredEventIds={alreadyRegisteredEventIds}
         formData={profile}
-        profileLocked={profileLocked}
         submitting={submitting}
         onFormChange={setProfile}
         onSubmit={handleSubmit}
