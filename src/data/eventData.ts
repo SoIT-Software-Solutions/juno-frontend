@@ -7,7 +7,7 @@ export const events: EventType[] = [
     day: 1,
     name: "TECH QUIZ",
     image:
-      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/4_tech_charades.png",
     venue: "Seminar Hall A",
     date: "2025-02-14",
     contact: "9876543210",
@@ -29,7 +29,7 @@ export const events: EventType[] = [
     day: 1,
     name: "BOX CRICKET",
     image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/6_box_cricket.JPG",
     venue: "Ground 1",
     date: "2025-02-14",
     contact: "9876543212",
@@ -40,7 +40,7 @@ export const events: EventType[] = [
     day: 1,
     name: "COOKING WITHOUT FIRE",
     image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/9_cooking_without_fire.JPG",
     venue: "Cafeteria",
     date: "2025-02-14",
     contact: "9876543213",
@@ -51,7 +51,7 @@ export const events: EventType[] = [
     day: 1,
     name: "PHOTOGRAPHY",
     image:
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/13_photography.jpg",
     venue: "Auditorium",
     date: "2025-02-14",
     contact: "9876543214",
@@ -62,7 +62,7 @@ export const events: EventType[] = [
     day: 1,
     name: "POSTER MAKING",
     image:
-      "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/5_poster_making.JPG",
     venue: "Art Room",
     date: "2025-02-14",
     contact: "9876543215",
@@ -73,7 +73,7 @@ export const events: EventType[] = [
     day: 1,
     name: "PAPER PRESENTATION",
     image:
-      "https://images.unsplash.com/photo-1541535881962-3bb380b08458?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/1_paper_presentation.JPG",
     venue: "Seminar Hall C",
     date: "2025-02-14",
     contact: "9876543216",
@@ -84,7 +84,7 @@ export const events: EventType[] = [
     day: 1,
     name: "DEBUGGING",
     image:
-      "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/2_debugging.JPG",
     venue: "Lab 201",
     date: "2025-02-14",
     contact: "9876543217",
@@ -97,7 +97,7 @@ export const events: EventType[] = [
     day: 2,
     name: "DANCE",
     image:
-      "https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/7_group_dance.JPG",
     venue: "Auditorium",
     date: "2025-02-15",
     contact: "9876543220",
@@ -108,7 +108,7 @@ export const events: EventType[] = [
     day: 2,
     name: "RAMP WALK",
     image:
-      "https://images.unsplash.com/photo-1596778402284-8398c7b09521?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/10_ramp_walk.JPG",
     venue: "Main Stage",
     date: "2025-02-15",
     contact: "9876543221",
@@ -119,7 +119,7 @@ export const events: EventType[] = [
     day: 2,
     name: "IPL AUCTION",
     image:
-      "https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/11_ipl_auction.jpg",
     venue: "Conference Room",
     date: "2025-02-15",
     contact: "9876543222",
@@ -130,7 +130,7 @@ export const events: EventType[] = [
     day: 2,
     name: "TECH BINGO",
     image:
-      "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/14_tech_bingo.jpg",
     venue: "Seminar Hall D",
     date: "2025-02-15",
     contact: "9876543223",
@@ -141,7 +141,7 @@ export const events: EventType[] = [
     day: 2,
     name: "TECH TREASURE HUNT",
     image:
-      "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/15_tech_treasure_hunt.jpg",
     venue: "Lab 302",
     date: "2025-02-15",
     contact: "9876543224",
@@ -152,7 +152,7 @@ export const events: EventType[] = [
     day: 2,
     name: "MOVIE QUIZ",
     image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/8_movie_quiz.png",
     venue: "Auditorium",
     date: "2025-02-15",
     contact: "9876543225",
@@ -163,7 +163,7 @@ export const events: EventType[] = [
     day: 2,
     name: "SHORT FILM",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/short%20film%20pic.jpg",
     venue: "Lab 303",
     date: "2025-02-15",
     contact: "9876543226",
@@ -174,7 +174,7 @@ export const events: EventType[] = [
     day: 2,
     name: "MEME CREATION",
     image:
-      "https://images.unsplash.com/photo-1519074063912-ad2a0522ed24?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/meme%20creation%20pic.png",
     venue: "Art Room",
     date: "2025-02-15",
     contact: "9876543227",
