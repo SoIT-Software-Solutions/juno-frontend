@@ -2,7 +2,7 @@ import React from "react";
 import { FormInput } from "./FormInput";
 
 type Props = {
-  value: string;
+  value: string | null;
   onChange: (v: string) => void;
   otherValue: string;
   onOtherChange: (v: string) => void;
@@ -26,8 +26,9 @@ export const AcademicYearSelector: React.FC<Props> = ({
   onOtherChange,
   disabled = false,
 }) => {
-  const isKnownYear = YEARS.some((y) => y.value === value);
-  const isOthers = !isKnownYear;
+  const isNoneSelected = value == null || value == "";
+  const isKnownYear = !isNoneSelected && YEARS.some((y) => y.value === value);
+  const isOthers = !isNoneSelected && !isKnownYear;
 
   return (
     <div className="space-y-6">
@@ -48,7 +49,10 @@ export const AcademicYearSelector: React.FC<Props> = ({
               name="academicYear"
               value={y.value}
               disabled={disabled}
-              checked={y.value === "others" ? isOthers : value === y.value}
+              checked={
+                !isNoneSelected &&
+                (y.value === "others" ? isOthers : value === y.value)
+              }
               onChange={(e) => {
                 const v = e.target.value;
                 if (v === "others") {
