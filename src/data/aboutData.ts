@@ -27,5 +27,13 @@ export const aboutData = {
     </p>
   `,
   galleryTitle: "Memorial Gallery",
-  galleryItems: Array(8).fill(null),
+  galleryItems: [
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_1.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_2.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_3.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_4.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k25_image_1.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k25_image_2.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k25_image_3.JPG",
+  ],
 };
