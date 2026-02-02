@@ -4,24 +4,17 @@ type Album = "2k26" | "2k25" | "2k24";
 
 const galleryData: Record<Album, string[]> = {
   "2k24": [
-    "https://images.unsplash.com/photo-1540575861501-7ad060e39fe5?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_1.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_2.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_3.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k24_image_4.JPG",
   ],
   "2k25": [
-    "https://images.unsplash.com/photo-1514525253348-8d9407c52085?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1475721027187-4024733924f7?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=600&auto=format&fit=crop",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k25_image_1.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k25_image_2.JPG",
+    "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/juno_2k25_image_3.JPG",
   ],
-  "2k26": [
-    "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1531058021387-49351d42a4b7?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1531058021387-49351d42a4b7?q=80&w=600&auto=format&fit=crop",
-  ],
+  "2k26": [],
 };
 
 export const GalleryPage: React.FC = () => {
@@ -46,7 +39,7 @@ export const GalleryPage: React.FC = () => {
     e.stopPropagation();
     if (selectedIndex === null) return;
     setSelectedIndex((prev) =>
-      prev === 0 ? currentImages.length - 1 : prev! - 1
+      prev === 0 ? currentImages.length - 1 : prev! - 1,
     );
   };
 
@@ -54,7 +47,7 @@ export const GalleryPage: React.FC = () => {
     e.stopPropagation();
     if (selectedIndex === null) return;
     setSelectedIndex((prev) =>
-      prev === currentImages.length - 1 ? 0 : prev! + 1
+      prev === currentImages.length - 1 ? 0 : prev! + 1,
     );
   };
 
@@ -90,6 +83,11 @@ export const GalleryPage: React.FC = () => {
               </button>
             ))}
           </div>
+          {activeAlbum === "2k26" && (
+            <h1 className="mt-6 text-3xl font-bold text-white text-center">
+              2k26 gallery is yet to update
+            </h1>
+          )}
         </div>
 
         {/* Gallery Grid */}
