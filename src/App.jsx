@@ -21,6 +21,7 @@ import { Events } from "./pages/Events";
 import { GalleryPage } from "./pages/Gallery";
 import Team from "./pages/Team";
 import { AuthSuccess } from "./pages/AuthSuccess";
+import Payment from "./pages/Payment";
 import { apiClient } from "./common/utils/apiClient";
 import { useEffect } from "react";
 
@@ -70,6 +71,7 @@ function App() {
               }
             />
             <Route path="/forms" element={<Navigate to="/events" replace />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/google" element={<RegisterOAuth />} />
             <Route path="/auth/success" element={<AuthSuccess />} />
           </Routes>
