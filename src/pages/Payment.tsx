@@ -43,14 +43,14 @@ const Payment: React.FC = () => {
               className="flex-1 flex flex-col items-center justify-center border-[6px] border-[#FF8C00] rounded-[40px] cursor-pointer hover:bg-orange-500/5 transition-all duration-300 relative group"
             >
               {previewUrl ? (
-                <div className="absolute inset-0 p-6">
+                <div className="absolute inset-0 p-6 flex items-center justify-center">
                   <img
                     src={previewUrl}
                     alt="Screenshot Preview"
                     className="w-full h-full object-contain rounded-2xl"
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-[34px]">
-                    <div className="text-center">
+                    <div className="text-center flex items-center justify-center">
                       <FiUpload className="text-4xl text-white mx-auto mb-2" />
                       <p className="text-white font-bold uppercase tracking-widest">
                         Change Screenshot
@@ -59,7 +59,7 @@ const Payment: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <div className="text-center p-4">
+                <div className="text-center p-4 flex items-center justify-center flex-col">
                   <FiPlus className="text-[120px] md:text-[150px] text-[#FF8C00] font-light mb-8" />
                   <h3 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-[0.1em] leading-tight">
                     UPLOAD YOUR <br /> SCREENSHOOT
