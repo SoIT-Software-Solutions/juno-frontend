@@ -97,7 +97,7 @@ export const RegistrationPage: React.FC = () => {
 
       alert("Submission success!");
       if (isFirstTimeForDay) {
-        navigate("payment");
+        navigate("payment", { replace: false });
       }
     } catch (err) {
       console.error(err);

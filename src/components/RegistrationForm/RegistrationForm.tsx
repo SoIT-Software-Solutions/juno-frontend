@@ -31,27 +31,37 @@ export const RegistrationForm: React.FC<Props> = ({
 }) => {
   const [buttonTextStatus, setButtonTextStatus] = useState("");
 
-  useEffect(() => {
-    const preselected = [
-      ...(defaultEventId ? [defaultEventId] : []),
-      ...alreadyRegisteredEventIds,
-    ];
+  const preselectedEvents = React.useMemo(() => {
+    return Array.from(
+      new Set([
+        ...(defaultEventId ? [defaultEventId] : []),
+        ...alreadyRegisteredEventIds,
+      ]),
+    );
+  }, [defaultEventId, alreadyRegisteredEventIds]);
 
-    if (isFirstTimeForDay) {
-      setButtonTextStatus("Proceed to payment");
-    } else {
-      setButtonTextStatus("Update submission");
-    }
-    onFormChange({
-      ...formData,
-      events: Array.from(new Set(preselected)),
-    });
+  useEffect(() => {
+    // const preselected = [
+    //   ...(defaultEventId ? [defaultEventId] : []),
+    //   ...alreadyRegisteredEventIds,
+    // ];
+
+    setButtonTextStatus(
+      isFirstTimeForDay ? "Proceed to payment" : "Update submission",
+    );
+    onFormChange({ ...formData, events: preselectedEvents });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultEventId, alreadyRegisteredEventIds]);
 
-  const update = (key: keyof RegistrationData, value: any) => {
-    onFormChange({ ...formData, [key]: value });
-  };
+  const update = React.useCallback(
+    (key: keyof RegistrationData, value: any) => {
+      if (formData[key] !== value) {
+        onFormChange({ ...formData, [key]: value });
+      }
+    },
+    [formData, onFormChange],
+  );
+
   // Func which took from stackoverflow, this basically makes sure the input field data aren't empty before submission
   // Contact number is 10 in length
   const validateForm = (): { valid: boolean; message?: string } => {
@@ -90,6 +100,13 @@ export const RegistrationForm: React.FC<Props> = ({
 
     onSubmit({ ...formData, events: newEvents });
   };
+
+  const eventOptions = React.useMemo(() => {
+    return events.map((e) => ({
+      ...e,
+      disabled: alreadyRegisteredEventIds.includes(e.id),
+    }));
+  }, [events, alreadyRegisteredEventIds]);
 
   return (
     <form onSubmit={submit} className="space-y-12">
@@ -143,10 +160,7 @@ export const RegistrationForm: React.FC<Props> = ({
       />
 
       <EventSelector
-        events={events.map((e) => ({
-          ...e,
-          disabled: alreadyRegisteredEventIds.includes(e.id),
-        }))}
+        events={eventOptions}
         selected={formData.events}
         onChange={(v) => update("events", v)}
       />
