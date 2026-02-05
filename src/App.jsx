@@ -9,7 +9,7 @@ import { Footer } from "./components/Footer";
 import backgroundImage from "./images/PC.jpg";
 import EventDetails from "./components/EventDetails";
 import RegisterOAuth from "./pages/RegisterOAuth";
-// import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
 import { About } from "./pages/About";
@@ -47,6 +47,7 @@ function App() {
   return (
     <div className="bg-black cursor-default select-none">
       <Router>
+        <ScrollToTop />
         <div
           className="bg-fixed bg-cover min-h-max"
           style={{ backgroundImage: `url(${backgroundImage})` }}
