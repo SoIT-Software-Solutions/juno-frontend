@@ -43,8 +43,9 @@ function EventDetails() {
         </Link>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-10">
+      <div className="grid gap-10 sm:grid-cols-2 sm:items-stretch">
         <motion.div
+          className="sm:flex sm:flex-col sm:h-full"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
         >
@@ -54,32 +55,54 @@ function EventDetails() {
             alt={event.name}
           />
 
-          <div className="bg-black/70 mt-6 p-6 rounded-lg border border-yellow-500">
-            <table className="text-gray-200 w-full">
-              <tbody>
-                <tr>
-                  <td>Venue:</td>
-                  <td>{event.venue}</td>
-                </tr>
-                <tr>
-                  <td>Date:</td>
-                  <td>{event.date}</td>
-                </tr>
-                <tr>
-                  <td>Contact:</td>
-                  <td>{event.contact}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div
+            className="bg-black/70 mt-6 p-8 rounded-lg border border-yellow-500
+                       sm:flex-1 sm:flex sm:flex-col sm:justify-between"
+          >
+            <div className="grid grid-rows-3 h-full divide-y divide-yellow-500/30">
+              <div className="py-6 grid grid-cols-2 items-center">
+                <span className="text-xl sm:text-2xl font-semibold text-gray-300">
+                  Venue
+                </span>
+                <span className="text-xl sm:text-2xl text-right">
+                  {event.venue}
+                </span>
+              </div>
+
+              <div className="py-6 grid grid-cols-2 items-center">
+                <span className="text-xl sm:text-2xl font-semibold text-gray-300">
+                  Time
+                </span>
+                <span className="text-xl sm:text-2xl text-right">
+                  {event.time}
+                </span>
+              </div>
+
+              <div className="py-6 grid grid-cols-2 items-start">
+                <span className="text-xl sm:text-2xl font-semibold text-gray-300">
+                  Contact
+                </span>
+                <div className="text-xl sm:text-2xl text-right space-y-2">
+                  {event.contact.map((c, i) => (
+                    <div key={i}>{c}</div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
+        {/* RIGHT COLUMN */}
         <motion.div
           className="bg-black/70 p-6 rounded-lg border border-yellow-500"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
         >
-          <img src={event.rule} alt="Rules" className="rounded-lg" />
+          <img
+            src={event.rule}
+            alt="Rules"
+            className="w-full h-auto rounded-lg"
+          />
         </motion.div>
       </div>
     </div>

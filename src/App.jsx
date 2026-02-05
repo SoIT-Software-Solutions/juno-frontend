@@ -24,6 +24,7 @@ import { AuthSuccess } from "./pages/AuthSuccess";
 import { apiClient } from "./common/utils/apiClient";
 import { useEffect } from "react";
 import PaymentPage from "./pages/PaymentPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 
 function App() {
   async function checkRefreshCookie() {
@@ -73,6 +74,10 @@ function App() {
             <Route path="/google" element={<RegisterOAuth />} />
             <Route path="/register/:day/payment" element={<PaymentPage />} />
             <Route path="/auth/success" element={<AuthSuccess />} />
+            <Route
+              path="/register/:day/payment/success"
+              element={<PaymentSuccessPage />}
+            />
           </Routes>
           <Footer />
         </div>

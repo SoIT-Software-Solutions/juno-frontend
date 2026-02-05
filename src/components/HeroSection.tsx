@@ -4,6 +4,8 @@ import { SecBtn } from "./ui/SecBtn";
 import { TriBtn } from "./ui/TirBtn";
 import CountdownTimer from "./CountdownTimer";
 
+const WHATSAPP_LINK = "https://chat.whatsapp.com/H65JITps7qwF6ELa4s9D0B";
+
 const Hero: React.FC = () => {
   return (
     <section className="min-h-screen w-full relative flex items-center pt-20 px-6 lg:px-20 overflow-hidden select-none">
@@ -35,7 +37,7 @@ const Hero: React.FC = () => {
               </SecBtn>
             </div>
 
-            <div className="flex justify-center text-[12px] md:text-sm font-black tracking-[0.2em] min-w-[240px]">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-[12px] md:text-sm font-black tracking-[0.2em]">
               <TriBtn
                 onClick={() =>
                   (window.location.href =
@@ -44,14 +46,14 @@ const Hero: React.FC = () => {
               >
                 Rule Book
               </TriBtn>
+
+              <TriBtn onClick={() => (window.location.href = WHATSAPP_LINK)}>
+                Join WhatsApp
+              </TriBtn>
             </div>
           </div>
         </div>
       </div>
-
-      {/*<div className="absolute bottom-10 left-1/2 -translate-x-1/2 lg:left-auto lg:right-20 lg:translate-x-0 hidden lg:flex flex-col items-center opacity-30">
-        <div className="w-px h-24 bg-gradient-to-t from-yellow-500 to-transparent" />
-      </div>*/}
     </section>
   );
 };
