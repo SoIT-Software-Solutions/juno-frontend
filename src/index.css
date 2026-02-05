@@ -3,156 +3,152 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Copperplate Gothic Bold";
-  src: url("./fonts/Copperplate_Gothic_Bold_Regular.ttf");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Copperplate Gothic Bold";
+    src: url("./fonts/Copperplate_Gothic_Bold_Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Hanora";
-  src: url("./fonts/Hanora-Regular.otf");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Hanora";
+    src: url("./fonts/Hanora-Regular.otf");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Kirsty";
-  src: url("./fonts/Kirsty Bd.otf");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Kirsty";
+    src: url("./fonts/Kirsty Bd.otf");
+    font-weight: normal;
+    font-style: normal;
 }
 
 :root {
-  --gold: #eab308;
-  --gold-light: #fde047;
-  --gold-dark: #854d0e;
-  --bg-glass-black: #0000005e;
-  --bg-dropglass: 30px;
+    --gold: #eab308;
+    --gold-light: #fde047;
+    --gold-dark: #854d0e;
+    --bg-glass-black: #0000005e;
+    --bg-dropglass: 30px;
 }
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Copperplate Gothic Bold", sans-serif;
-  background-color: #010409;
-  color: #ffffff;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: "Copperplate Gothic Bold", sans-serif;
+    background-color: #010409;
+    color: #ffffff;
+    overflow-x: hidden;
 }
 .font-hanora {
-  font-family: "Hanora", serif;
+    font-family: "Hanora", serif;
 }
 
 .font-kirsty {
-  font-family: "Kirsty", sans-serif;
+    font-family: "Kirsty", sans-serif;
 }
 
 .marble-bg {
-  background: linear-gradient(
-      to bottom,
-      rgba(1, 4, 9, 0.75),
-      rgba(1, 4, 9, 0.9)
-    ),
-    url("./assets/BG.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+    background:
+        /*linear-gradient(to bottom, rgba(1, 4, 9, 0.75), rgba(1, 4, 9, 0.9)),*/ url("./assets/BG.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .gold-text {
-  background: linear-gradient(89.61deg, #ffe100 -0.01%, #ff9100 52.1%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
+    background: linear-gradient(89.61deg, #ffe100 -0.01%, #ff9100 52.1%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 .gold-btn {
-  border: 1px solid rgba(234, 179, 8, 0.4);
-  color: var(--gold);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-weight: 700;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(5px);
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    color: var(--gold);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .gold-btn:hover {
-  background-color: rgba(234, 179, 8, 0.1);
-  border-color: var(--gold);
-  color: #ffffff;
-  box-shadow: 0 0 30px rgba(234, 179, 8, 0.25);
-  transform: translateY(-2px);
+    background-color: rgba(234, 179, 8, 0.1);
+    border-color: var(--gold);
+    color: #ffffff;
+    box-shadow: 0 0 30px rgba(234, 179, 8, 0.25);
+    transform: translateY(-2px);
 }
 
 .primary-btn {
-  background: var(--gold);
-  color: rgb(0, 0, 0);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-weight: 700;
+    background: var(--gold);
+    color: rgb(0, 0, 0);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
 }
 .primary-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(234, 88, 12, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(234, 88, 12, 0.5);
 }
 
 .card-glass {
-  background: var(--bg-glass-black);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(234, 179, 8, 0.15);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    background: var(--bg-glass-black);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(234, 179, 8, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .glass-card {
-  background: var(--bg-glass-black);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+    background: var(--bg-glass-black);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
 }
 .nav-link {
-  position: relative;
-  padding-bottom: 4px;
+    position: relative;
+    padding-bottom: 4px;
 }
 .nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: var(--gold);
-  transition: width 0.3s ease;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--gold);
+    transition: width 0.3s ease;
 }
 .nav-link:hover::after {
-  width: 100%;
+    width: 100%;
 }
 .nav-link.active::after {
-  width: 100%;
+    width: 100%;
 }
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 .float-animation {
-  animation: float 6s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite;
 }
 @keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .animate-fade-in {
-  animation: fade-in 1s ease-out forwards;
+    animation: fade-in 1s ease-out forwards;
 }
