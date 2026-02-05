@@ -68,7 +68,12 @@ const Hero: React.FC = () => {
             </div>
 
             <div className="flex justify-center text-[12px] md:text-sm font-black tracking-[0.2em] min-w-[240px]">
-              <TriBtn onClick={() => (window.location.href = "/rulebook")}>
+              <TriBtn
+                onClick={() =>
+                  (window.location.href =
+                    "https://drive.google.com/file/d/1JBKsTMDT3N4H7Anrqff5EJer6uJBc1b1/view")
+                }
+              >
                 Rule Book
               </TriBtn>
             </div>
