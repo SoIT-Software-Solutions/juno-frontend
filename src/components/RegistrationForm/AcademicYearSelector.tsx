@@ -28,7 +28,7 @@ export const AcademicYearSelector: React.FC<Props> = ({
 }) => {
   const isNoneSelected = value == null || value == "";
   const isKnownYear = !isNoneSelected && YEARS.some((y) => y.value === value);
-  const isOthers = !isNoneSelected && !isKnownYear;
+  const isOthers = value === "others";
 
   return (
     <div className="space-y-6">
@@ -49,14 +49,11 @@ export const AcademicYearSelector: React.FC<Props> = ({
               name="academicYear"
               value={y.value}
               disabled={disabled}
-              checked={
-                !isNoneSelected &&
-                (y.value === "others" ? isOthers : value === y.value)
-              }
+              checked={value === y.value}
               onChange={(e) => {
                 const v = e.target.value;
                 if (v === "others") {
-                  onChange(otherValue || "");
+                  onChange(otherValue || "others");
                 } else {
                   onChange(v);
                 }

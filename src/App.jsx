@@ -23,6 +23,7 @@ import Team from "./pages/Team";
 import { AuthSuccess } from "./pages/AuthSuccess";
 import { apiClient } from "./common/utils/apiClient";
 import { useEffect } from "react";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   async function checkRefreshCookie() {
@@ -69,6 +70,7 @@ function App() {
             />
             <Route path="/forms" element={<Navigate to="/events" replace />} />
             <Route path="/google" element={<RegisterOAuth />} />
+            <Route path="/register/:day/payment" element={<PaymentPage />} />
             <Route path="/auth/success" element={<AuthSuccess />} />
           </Routes>
           <Footer />

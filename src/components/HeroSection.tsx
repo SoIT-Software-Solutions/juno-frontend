@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   });
 
   useEffect(() => {
-    const targetDate = new Date(2026, 1, 27);
+    const targetDate = new Date(2026, 1, 24);
 
     const timer = setInterval(() => {
       const now = new Date().getTime();

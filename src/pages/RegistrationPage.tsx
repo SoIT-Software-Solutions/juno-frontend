@@ -4,7 +4,9 @@ import { getEventByDays } from "../common/utils/eventUtils";
 import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
 import { apiClient } from "../common/utils/apiClient";
 import { RegistrationData } from "../common/types/eventTypes";
+import { useNavigate } from "react-router-dom";
 
+// This normalizeProfile made my day ngl
 const normalizeProfile = (data: any): RegistrationData => ({
   name: data.participant_name ?? "",
   phone: data.contact_number ?? "",
@@ -17,6 +19,8 @@ const normalizeProfile = (data: any): RegistrationData => ({
 });
 
 export const RegistrationPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const { day } = useParams<{ day: string }>();
   const [searchParams] = useSearchParams();
 
@@ -27,10 +31,10 @@ export const RegistrationPage: React.FC = () => {
   const preselectEventId = eventParam ? Number(eventParam) : undefined;
 
   const [profile, setProfile] = useState<RegistrationData | null>(null);
-  // const [profileLocked, setProfileLocked] = useState(false);
   const [alreadyRegisteredEventIds, setAlreadyRegisteredEventIds] = useState<
     number[]
   >([]);
+  const [isFirstTimeForDay, setIsFirstTimeForDay] = useState<boolean>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
@@ -46,8 +50,20 @@ export const RegistrationPage: React.FC = () => {
         ]);
 
         setProfile(normalizeProfile(profileRes.data));
-        // setProfileLocked(Boolean(profileRes.data.college_name));
-        setAlreadyRegisteredEventIds(regRes.data?.event_ids ?? []);
+
+        const eventIds = regRes.data?.event_ids ?? [];
+        setAlreadyRegisteredEventIds(eventIds);
+
+        const firstTime = eventIds.length === 0;
+        setIsFirstTimeForDay(firstTime);
+
+        if (firstTime) {
+          alert("First time");
+          alert(eventIds.length);
+          console.log(regRes.data);
+        } else {
+          alert("You already did it");
+        }
       } finally {
         setLoading(false);
       }
@@ -60,24 +76,15 @@ export const RegistrationPage: React.FC = () => {
     setSubmitting(true);
     try {
       if (data.events.length > 0) {
-        await apiClient.post(`/event/register`, {
+        await apiClient.post("/event/register", {
           day_id: dayNumber,
           event_Ids: data.events,
         });
 
-        setAlreadyRegisteredEventIds((prev) => [...prev, ...data.events]);
+        setAlreadyRegisteredEventIds((prev) =>
+          Array.from(new Set([...prev, ...data.events])),
+        );
       }
-
-      // if (!profileLocked) {
-      //   console.log(data.college);
-      //   console.log(data.department);
-      //   console.log(data.academicYear);
-      //   console.log(data.phone);
-      //   console.log(data.name);
-
-      //   setProfileLocked(true);
-      // }
-      //
 
       await apiClient.post("/profile/participant/update", {
         participant_name: data.name,
@@ -89,6 +96,9 @@ export const RegistrationPage: React.FC = () => {
       });
 
       alert("Submission success!");
+      if (isFirstTimeForDay) {
+        navigate("payment");
+      }
     } catch (err) {
       console.error(err);
       alert("Submission failed");
@@ -122,6 +132,7 @@ export const RegistrationPage: React.FC = () => {
         submitting={submitting}
         onFormChange={setProfile}
         onSubmit={handleSubmit}
+        isFirstTimeForDay={isFirstTimeForDay}
       />
     </div>
   );

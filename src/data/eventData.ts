@@ -18,7 +18,7 @@ export const events: EventType[] = [
     day: 1,
     name: "TECH CONNECTION",
     image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=500&auto=format&fit=crop",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/3_tech_connection.JPG",
     venue: "Seminar Hall B",
     date: "2025-02-14",
     contact: "9876543211",
