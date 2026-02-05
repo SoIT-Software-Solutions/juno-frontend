@@ -1,9 +1,13 @@
-import HeroSetion from "../components/HeroSection";
+import Hero from "../components/HeroSection";
+import StatsSection from "../components/StatsSection";
+import { EventSchedule } from "../components/EventSchedule";
 
 function Home() {
   return (
     <div>
-      <HeroSetion />
+      <Hero />
+      <StatsSection />
+      <EventSchedule />
     </div>
   );
 }
