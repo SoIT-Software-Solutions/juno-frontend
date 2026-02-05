@@ -47,8 +47,7 @@ body {
 }
 
 .marble-bg {
-    background:
-        /*linear-gradient(to bottom, rgba(1, 4, 9, 0.75), rgba(1, 4, 9, 0.9)),*/ url("./assets/BG.jpg");
+    background: url("./assets/BG.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
