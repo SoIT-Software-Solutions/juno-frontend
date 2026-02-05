@@ -11,10 +11,39 @@ const PaymentPage = () => {
   const [preview, setPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    const checkPaymentStatus = async () => {
+      try {
+        const res = await apiClient.get(
+          `/event/register/payment/status?day_id=${day}`,
+        );
+
+        const state = res.data.state;
+
+        if (
+          state === "PAYMENT_DONE" ||
+          state === "VERIFIED_PAYMENT" ||
+          state === "NOT_REGISTERED"
+        ) {
+          navigate(`/register/${day}`, { replace: true });
+          return;
+        }
+
+        setChecking(false);
+      } catch {
+        navigate("/google", { replace: true });
+      }
+    };
+
+    if (day) {
+      checkPaymentStatus();
+    }
+  }, [day, navigate]);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
-
     const selected = e.target.files[0];
     setFile(selected);
     setPreview(URL.createObjectURL(selected));
@@ -33,17 +62,23 @@ const PaymentPage = () => {
 
     try {
       setUploading(true);
-
       await apiClient.post("/event/register/payment", formData);
-
-      alert("Payment submitted successfully. Awaiting verification.");
-      navigate(`/register/${day}`, { replace: true });
+      navigate(`/register/${day}/payment/success`, { replace: true });
+      // window.location.href = "https://chat.whatsapp.com/H65JITps7qwF6ELa4s9D0B";
     } catch (err: any) {
       setError(err.response?.data?.error || "Upload failed");
     } finally {
       setUploading(false);
     }
   };
+
+  if (checking) {
+    return (
+      <div className="pt-40 text-center text-white min-h-screen">
+        Checking payment status...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen pt-24 px-4 flex justify-center">
@@ -73,7 +108,9 @@ const PaymentPage = () => {
 
             <label
               htmlFor="file-upload"
-              className={`primary-btn py-4 px-6 rounded-xl text-xl font-bold cursor-pointer mb-6 text-center ${uploading ? "hidden" : ""}`}
+              className={`primary-btn py-4 px-6 rounded-xl text-xl font-bold cursor-pointer mb-6 text-center ${
+                uploading ? "hidden" : ""
+              }`}
             >
               {file ? "Change File" : "Upload Payment Proof"}
             </label>
