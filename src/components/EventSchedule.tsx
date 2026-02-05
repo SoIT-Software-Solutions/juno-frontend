@@ -15,13 +15,13 @@ export const EventSchedule: React.FC = () => {
 
           <div className="space-y-6">
             {day1Events.map((event) => (
-              <Link
+              <a
                 key={event.id}
-                to={`/events/${event.id}`}
+                href={`/events/${event.id}`}
                 className="block text-xl font-bold tracking-widest text-white/70 hover:text-yellow-500 transition"
               >
                 {event.name}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

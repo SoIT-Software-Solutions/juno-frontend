@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { RegistrationData } from "../../common/types/eventTypes";
 import { FormInput } from "./FormInput";
 import { AcademicYearSelector } from "./AcademicYearSelector";
@@ -15,6 +15,7 @@ type Props = {
   // profileLocked: boolean;
   onFormChange: (data: RegistrationData) => void;
   onSubmit: (data: RegistrationData) => void;
+  isFirstTimeForDay: boolean;
 };
 
 export const RegistrationForm: React.FC<Props> = ({
@@ -26,13 +27,21 @@ export const RegistrationForm: React.FC<Props> = ({
   formData,
   onFormChange,
   onSubmit,
+  isFirstTimeForDay,
 }) => {
+  const [buttonTextStatus, setButtonTextStatus] = useState("");
+
   useEffect(() => {
     const preselected = [
       ...(defaultEventId ? [defaultEventId] : []),
       ...alreadyRegisteredEventIds,
     ];
 
+    if (isFirstTimeForDay) {
+      setButtonTextStatus("Proceed to payment");
+    } else {
+      setButtonTextStatus("Update submission");
+    }
     onFormChange({
       ...formData,
       events: Array.from(new Set(preselected)),
@@ -172,7 +181,7 @@ export const RegistrationForm: React.FC<Props> = ({
               Submitting...
             </>
           ) : (
-            "Submit Registration"
+            buttonTextStatus
           )}
         </button>
       </div>
