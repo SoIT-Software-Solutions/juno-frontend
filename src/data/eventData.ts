@@ -7,7 +7,7 @@ export const events: EventType[] = [
     day: 1,
     name: "TECH QUIZ",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/4_tech_charades.png",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/tech_quiz.webp",
     venue: "Seminar Hall A",
     date: "2025-02-14",
     contact: "9876543210",
@@ -18,7 +18,7 @@ export const events: EventType[] = [
     day: 1,
     name: "TECH CONNECTION",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/3_tech_connection.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/tech_connection.webp",
     venue: "Seminar Hall B",
     date: "2025-02-14",
     contact: "9876543211",
@@ -29,7 +29,7 @@ export const events: EventType[] = [
     day: 1,
     name: "BOX CRICKET",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/6_box_cricket.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/box_cricket.webp",
     venue: "Ground 1",
     date: "2025-02-14",
     contact: "9876543212",
@@ -40,7 +40,7 @@ export const events: EventType[] = [
     day: 1,
     name: "COOKING WITHOUT FIRE",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/9_cooking_without_fire.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/cooking_without_fire.webp",
     venue: "Cafeteria",
     date: "2025-02-14",
     contact: "9876543213",
@@ -51,7 +51,7 @@ export const events: EventType[] = [
     day: 1,
     name: "PHOTOGRAPHY",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/13_photography.jpg",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/photograhy.webp",
     venue: "Auditorium",
     date: "2025-02-14",
     contact: "9876543214",
@@ -62,7 +62,7 @@ export const events: EventType[] = [
     day: 1,
     name: "POSTER MAKING",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/5_poster_making.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/poster_making.webp",
     venue: "Art Room",
     date: "2025-02-14",
     contact: "9876543215",
@@ -73,7 +73,7 @@ export const events: EventType[] = [
     day: 1,
     name: "PAPER PRESENTATION",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/1_paper_presentation.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/paper_presentation.webp",
     venue: "Seminar Hall C",
     date: "2025-02-14",
     contact: "9876543216",
@@ -84,7 +84,7 @@ export const events: EventType[] = [
     day: 1,
     name: "DEBUGGING",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/2_debugging.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/debugging.webp",
     venue: "Lab 201",
     date: "2025-02-14",
     contact: "9876543217",
@@ -97,7 +97,7 @@ export const events: EventType[] = [
     day: 2,
     name: "DANCE",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/7_group_dance.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/dance.webp",
     venue: "Auditorium",
     date: "2025-02-15",
     contact: "9876543220",
@@ -108,7 +108,7 @@ export const events: EventType[] = [
     day: 2,
     name: "RAMP WALK",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/10_ramp_walk.JPG",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/ramp_walk.webp",
     venue: "Main Stage",
     date: "2025-02-15",
     contact: "9876543221",
@@ -119,7 +119,7 @@ export const events: EventType[] = [
     day: 2,
     name: "IPL AUCTION",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/11_ipl_auction.jpg",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/ipl_auction.webp",
     venue: "Conference Room",
     date: "2025-02-15",
     contact: "9876543222",
@@ -130,7 +130,7 @@ export const events: EventType[] = [
     day: 2,
     name: "TECH BINGO",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/14_tech_bingo.jpg",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/tech_bingo.webp",
     venue: "Seminar Hall D",
     date: "2025-02-15",
     contact: "9876543223",
@@ -141,7 +141,7 @@ export const events: EventType[] = [
     day: 2,
     name: "TECH TREASURE HUNT",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/15_tech_treasure_hunt.jpg",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/tech_treasure_hunt.webp",
     venue: "Lab 302",
     date: "2025-02-15",
     contact: "9876543224",
@@ -152,7 +152,7 @@ export const events: EventType[] = [
     day: 2,
     name: "MOVIE QUIZ",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/8_movie_quiz.png",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/movie_quiz.webp",
     venue: "Auditorium",
     date: "2025-02-15",
     contact: "9876543225",
@@ -163,7 +163,7 @@ export const events: EventType[] = [
     day: 2,
     name: "SHORT FILM",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/short%20film%20pic.jpg",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/short_film.webp",
     venue: "Lab 303",
     date: "2025-02-15",
     contact: "9876543226",
@@ -174,7 +174,7 @@ export const events: EventType[] = [
     day: 2,
     name: "MEME CREATION",
     image:
-      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/meme%20creation%20pic.png",
+      "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/meme_creation.webp",
     venue: "Art Room",
     date: "2025-02-15",
     contact: "9876543227",
