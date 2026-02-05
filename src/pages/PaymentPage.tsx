@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
 import { apiClient } from "../common/utils/apiClient";
@@ -37,7 +37,6 @@ const PaymentPage = () => {
       await apiClient.post("/event/register/payment", formData);
 
       alert("Payment submitted successfully. Awaiting verification.");
-
       navigate(`/register/${day}`, { replace: true });
     } catch (err: any) {
       setError(err.response?.data?.error || "Upload failed");
@@ -62,14 +61,22 @@ const PaymentPage = () => {
             />
           </div>
 
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col items-center">
             <input
               type="file"
+              id="file-upload"
               accept="image/*"
               onChange={onFileChange}
+              className="hidden"
               disabled={uploading}
-              className="mb-6 text-white"
             />
+
+            <label
+              htmlFor="file-upload"
+              className={`primary-btn py-4 px-6 rounded-xl text-xl font-bold cursor-pointer mb-6 text-center ${uploading ? "hidden" : ""}`}
+            >
+              {file ? "Change File" : "Upload Payment Proof"}
+            </label>
 
             {preview && (
               <img
@@ -80,7 +87,9 @@ const PaymentPage = () => {
             )}
 
             {error && (
-              <p className="text-red-400 font-semibold mb-4">{error}</p>
+              <p className="text-red-400 font-semibold mb-4 text-center">
+                {error}
+              </p>
             )}
 
             {file && (
@@ -89,9 +98,9 @@ const PaymentPage = () => {
                 disabled={uploading}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                className="primary-btn py-4 rounded-xl text-xl font-bold disabled:opacity-50"
+                className="primary-btn py-4 rounded-xl text-xl font-bold disabled:opacity-50 w-full"
               >
-                {uploading ? "UPLOADING..." : "SUBMIT PAYMENT"}
+                {uploading ? "UPLOADING..." : "Submit Payment"}
               </motion.button>
             )}
           </div>
