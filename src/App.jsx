@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-black cursor-default select-none">
+    <div className="cursor-default select-none">
       <Router>
         <ScrollToTop />
         <div

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { RegistrationData } from "../../common/types/eventTypes";
 import { FormInput } from "./FormInput";
 import { AcademicYearSelector } from "./AcademicYearSelector";
@@ -11,9 +11,7 @@ type Props = {
   alreadyRegisteredEventIds?: number[];
   submitting?: boolean;
 
-  formData: RegistrationData;
-  // profileLocked: boolean;
-  onFormChange: (data: RegistrationData) => void;
+  initialData: RegistrationData;
   onSubmit: (data: RegistrationData) => void;
   isFirstTimeForDay: boolean;
 };
@@ -24,14 +22,16 @@ export const RegistrationForm: React.FC<Props> = ({
   defaultEventId,
   alreadyRegisteredEventIds = [],
   submitting = false,
-  formData,
-  onFormChange,
+  initialData,
   onSubmit,
   isFirstTimeForDay,
 }) => {
-  const [buttonTextStatus, setButtonTextStatus] = useState("");
+  const [formData, setFormData] = useState<RegistrationData>(initialData);
+  const [buttonTextStatus] = useState(
+    isFirstTimeForDay ? "Proceed to payment" : "Update submission",
+  );
 
-  const preselectedEvents = React.useMemo(() => {
+  const preselectedEvents = useMemo(() => {
     return Array.from(
       new Set([
         ...(defaultEventId ? [defaultEventId] : []),
@@ -41,30 +41,16 @@ export const RegistrationForm: React.FC<Props> = ({
   }, [defaultEventId, alreadyRegisteredEventIds]);
 
   useEffect(() => {
-    // const preselected = [
-    //   ...(defaultEventId ? [defaultEventId] : []),
-    //   ...alreadyRegisteredEventIds,
-    // ];
+    setFormData((prev) => ({ ...prev, events: preselectedEvents }));
+  }, [preselectedEvents]);
 
-    setButtonTextStatus(
-      isFirstTimeForDay ? "Proceed to payment" : "Update submission",
+  const update = useCallback((key: keyof RegistrationData, value: any) => {
+    setFormData((prev) =>
+      prev[key] === value ? prev : { ...prev, [key]: value },
     );
-    onFormChange({ ...formData, events: preselectedEvents });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultEventId, alreadyRegisteredEventIds]);
+  }, []);
 
-  const update = React.useCallback(
-    (key: keyof RegistrationData, value: any) => {
-      if (formData[key] !== value) {
-        onFormChange({ ...formData, [key]: value });
-      }
-    },
-    [formData, onFormChange],
-  );
-
-  // Func which took from stackoverflow, this basically makes sure the input field data aren't empty before submission
-  // Contact number is 10 in length
-  const validateForm = (): { valid: boolean; message?: string } => {
+  const validateForm = useCallback((): { valid: boolean; message?: string } => {
     if (!formData.name.trim())
       return { valid: false, message: "Name is required" };
     if (!formData.phone.trim())
@@ -81,32 +67,33 @@ export const RegistrationForm: React.FC<Props> = ({
       return { valid: false, message: "Please specify your year" };
     if (formData.events.length === 0)
       return { valid: false, message: "Select at least one event" };
-
     return { valid: true };
-  };
+  }, [formData]);
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const submit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      const validation = validateForm();
+      if (!validation.valid) {
+        alert(validation.message);
+        return;
+      }
+      const newEvents = formData.events.filter(
+        (id) => !alreadyRegisteredEventIds.includes(id),
+      );
+      onSubmit({ ...formData, events: newEvents });
+    },
+    [formData, alreadyRegisteredEventIds, onSubmit, validateForm],
+  );
 
-    const validation = validateForm();
-    if (!validation.valid) {
-      alert(validation.message);
-      return;
-    }
-
-    const newEvents = formData.events.filter(
-      (id) => !alreadyRegisteredEventIds.includes(id),
-    );
-
-    onSubmit({ ...formData, events: newEvents });
-  };
-
-  const eventOptions = React.useMemo(() => {
-    return events.map((e) => ({
-      ...e,
-      disabled: alreadyRegisteredEventIds.includes(e.id),
-    }));
-  }, [events, alreadyRegisteredEventIds]);
+  const eventOptions = useMemo(
+    () =>
+      events.map((e) => ({
+        ...e,
+        disabled: alreadyRegisteredEventIds.includes(e.id),
+      })),
+    [events, alreadyRegisteredEventIds],
+  );
 
   return (
     <form onSubmit={submit} className="space-y-12">
@@ -121,33 +108,29 @@ export const RegistrationForm: React.FC<Props> = ({
           value={formData.name}
           onChange={(v) => update("name", v)}
         />
-
         <FormInput
           label="Contact Number"
           placeholder="Enter your number"
           value={formData.phone}
           onChange={(v) => update("phone", v)}
         />
-
         <FormInput
           label="College"
           placeholder="Enter your college"
           value={formData.college}
           onChange={(v) => update("college", v)}
         />
-
         <FormInput
           label="Department"
           placeholder="Enter your department"
           value={formData.department}
           onChange={(v) => update("department", v)}
         />
-
         <FormInput
           label="Email"
           placeholder="Your email"
           value={formData.email}
-          disabled={true}
+          disabled
           onChange={() => {}}
         />
       </div>
@@ -164,39 +147,14 @@ export const RegistrationForm: React.FC<Props> = ({
         selected={formData.events}
         onChange={(v) => update("events", v)}
       />
-      {/*Loading animation taken chatGPT, if any error make sure to prompt it while giving enough content*/}
+
       <div className="flex justify-center pt-10">
         <button
           type="submit"
           disabled={submitting}
           className="primary-btn px-20 py-5 rounded-xl uppercase tracking-widest flex items-center gap-3"
         >
-          {submitting ? (
-            <>
-              <svg
-                className="animate-spin h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
-                />
-              </svg>
-              Submitting...
-            </>
-          ) : (
-            buttonTextStatus
-          )}
+          {submitting ? <span>Submitting...</span> : buttonTextStatus}
         </button>
       </div>
     </form>
