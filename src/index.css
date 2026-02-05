@@ -46,13 +46,6 @@ body {
     font-family: "Kirsty", sans-serif;
 }
 
-.marble-bg {
-    background: url("./assets/BG.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
 .gold-text {
     background: linear-gradient(89.61deg, #ffe100 -0.01%, #ff9100 52.1%);
     -webkit-background-clip: text;

@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import { Footer } from "./components/Footer";
-import backgroundImage from "./images/PC.jpg";
+import backgroundImage from "./images/PC.webp";
 import EventDetails from "./components/EventDetails";
 import RegisterOAuth from "./pages/RegisterOAuth";
 import ScrollToTop from "./components/ScrollToTop";
