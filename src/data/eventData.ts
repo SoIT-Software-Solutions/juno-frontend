@@ -99,7 +99,7 @@ export const events: EventType[] = [
     image:
       "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/group_dance.jpg",
     venue: "Baba Deep Singh Auditorium",
-    time: "2025-02-15",
+    time: "12:30 PM - 3:30 PM",
     contact: ["9342865065", "8946078655"],
     rule: "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/event_rule_image/group_dance_rule.webp",
   },
