@@ -40,7 +40,7 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
 
         throw new Error("Unknown state");
       } catch {
-        navigate("/google", { replace: true });
+        navigate(`/google?day=${day}`, { replace: true });
       }
     };
 
