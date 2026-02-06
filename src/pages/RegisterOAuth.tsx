@@ -1,40 +1,19 @@
-import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import React from "react";
 
-function RegisterOAuth() {
-  const backendAPI = import.meta.env.VITE_BACKEND_API;
+const RegisterOAuth: React.FC = () => {
+  const { day } = useParams<{ day: string }>();
+  const backendURL = import.meta.env.VITE_BACKEND_API;
 
   const loginWithGoogle = () => {
-    window.location.href = backendAPI + "/auth/google";
-  };
+    const url = new URL(`${backendURL}/auth/google`);
 
-  const testSession = async () => {
-    try {
-      const res = await fetch(`${backendAPI}/auth/user`, {
-        credentials: "include",
-      });
-
-      if (!res.ok) {
-        // alert("No user session found");
-        return;
-      }
-
-      const data = await res.json();
-
-      if (!data.authenticated) {
-        // alert("No user session found");
-        return;
-      }
-
-      // alert(`Logged in as: ${data.user.participant_name} (${data.user.email})`);
-    } catch (err) {
-      console.error(err);
-      // alert("Error fetching user session");
+    if (day) {
+      url.searchParams.append("state", day);
     }
-  };
 
-  useEffect(() => {
-    testSession();
-  }, []);
+    window.location.href = url.toString();
+  };
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-center text-center px-6">
@@ -55,6 +34,7 @@ function RegisterOAuth() {
           <span className="font-semibold">Sign in with Google</span>
         </button>
       </div>
+
       <p className="mt-3 text-sm md:text-base text-white/60">
         <br />
         We only use your Google account to verify your identity and register you
@@ -65,6 +45,6 @@ function RegisterOAuth() {
       </p>
     </section>
   );
-}
+};
 
 export default RegisterOAuth;
