@@ -20,8 +20,9 @@ export function AuthSuccess() {
     localStorage.setItem("access_token", access);
 
     if (day) {
-      navigate(`/register?day=${day}`, { replace: true });
+      navigate(`/register/${day}`, { replace: true });
     } else {
+      alert("Something sus");
       navigate("/", { replace: true });
     }
   }, [navigate]);
