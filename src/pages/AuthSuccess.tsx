@@ -19,6 +19,8 @@ export function AuthSuccess() {
     localStorage.setItem("refresh_token", refresh);
     localStorage.setItem("access_token", access);
 
+    apiClient.defaults.headers.common.Authorization = `Bearer ${access}`;
+
     if (day) {
       navigate(`/register/${day}`, { replace: true });
     } else {
