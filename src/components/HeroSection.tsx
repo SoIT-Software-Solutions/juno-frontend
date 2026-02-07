@@ -1,5 +1,5 @@
 import React from "react";
-import heroLogo from "../images/JUNOHeroLogo.png";
+import heroLogo from "../images/JUNO_LOGO_NEW.png";
 import { SecBtn } from "./ui/SecBtn";
 import { TriBtn } from "./ui/TirBtn";
 import CountdownTimer from "./CountdownTimer";
@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
               <TriBtn
                 onClick={() =>
                   (window.location.href =
-                    "https://drive.google.com/file/d/1JBKsTMDT3N4H7Anrqff5EJer6uJBc1b1/view")
+                    "https://drive.google.com/file/d/1teflOLLqo6AoeLYyRgQ8dPCKE9H14Tw-/view")
                 }
               >
                 Rule Book
