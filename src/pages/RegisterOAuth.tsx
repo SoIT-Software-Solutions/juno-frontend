@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import React from "react";
 
 const RegisterOAuth: React.FC = () => {
-  const { day } = useParams<{ day: string }>();
+  const [searchParams] = useSearchParams();
+  const day = searchParams.get("day");
+
   const backendURL = import.meta.env.VITE_BACKEND_API;
 
   const loginWithGoogle = () => {

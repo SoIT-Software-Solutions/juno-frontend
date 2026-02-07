@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiClient } from "../common/utils/apiClient";
 
 export function AuthSuccess() {
   const navigate = useNavigate();
