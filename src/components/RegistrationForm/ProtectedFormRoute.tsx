@@ -12,7 +12,7 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
       try {
         await apiClient.get("/auth/user");
       } catch {
-        navigate("/google", { replace: true });
+        navigate(`/google?day=${day}`, { replace: true });
         return;
       }
 
@@ -40,7 +40,7 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
 
         throw new Error("Unknown state");
       } catch {
-        navigate("/google", { replace: true });
+        navigate(`/google?day=${day}`, { replace: true });
       }
     };
 
