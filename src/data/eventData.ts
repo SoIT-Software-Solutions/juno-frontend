@@ -74,10 +74,10 @@ export const events: EventType[] = [
     name: "PAPER PRESENTATION",
     image:
       "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/gallery/events/paper_presentation.webp",
-    venue: "Lab 2",
-    time: "1:00 PM - 5:00 PM",
+    venue: "AC Seminar Hall",
+    time: "9:00 AM - 1:00 PM",
     contact: ["9361749055", "9094854060"],
-    rule: "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/event_rule_image/paper_presentation_rule.webp",
+    rule: "https://xbyquowixvhvfohybrni.supabase.co/storage/v1/object/public/event_rule_image/ppt-rule-change.jpeg",
   },
   {
     id: 8,
