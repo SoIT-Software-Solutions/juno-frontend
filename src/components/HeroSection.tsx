@@ -5,6 +5,8 @@ import { TriBtn } from "./ui/TirBtn";
 import CountdownTimer from "./CountdownTimer";
 
 const WHATSAPP_LINK = "https://chat.whatsapp.com/H65JITps7qwF6ELa4s9D0B";
+const RULE_BOOK_LINK =
+  "https://drive.google.com/file/d/1_zD06Fv2D_8v97s-UMg7-eaYC5lTRDF1/view";
 
 export const WhatsAppBtn: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -42,12 +44,7 @@ const Hero: React.FC = () => {
               Day 2 Registration
             </SecBtn>
 
-            <TriBtn
-              onClick={() =>
-                (window.location.href =
-                  "https://drive.google.com/file/d/1teflOLLqo6AoeLYyRgQ8dPCKE9H14Tw-/view")
-              }
-            >
+            <TriBtn onClick={() => (window.location.href = RULE_BOOK_LINK)}>
               Rule Book
             </TriBtn>
 
