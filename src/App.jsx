@@ -26,6 +26,7 @@ import { useEffect } from "react";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import { NotFound } from "./pages/NotFound";
+import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
   async function checkRefreshCookie() {
@@ -73,6 +74,7 @@ function App() {
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/events" element={<Events />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/events/:id" element={<EventDetails />} />
               <Route
                 path="/register/:day"

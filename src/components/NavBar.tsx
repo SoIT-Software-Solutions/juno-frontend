@@ -37,6 +37,7 @@ function Navbar() {
             <NavLink label="EVENTS" href="/events" />
             <NavLink label="GALLERY" href="/gallery" />
             <NavLink label="TEAM" href="/team" />
+            <NavLink label="PROFILE" href="/profile" />
             {/* <NavLink label="CONTACT US" href="/contact" /> */}
           </div>
 
@@ -137,6 +138,11 @@ function Navbar() {
             <MobileNavLink
               label="TEAM"
               href="/team"
+              onClick={closeMobileMenu}
+            />
+            <MobileNavLink
+              label="PROFILE"
+              href="/profile"
               onClick={closeMobileMenu}
             />
             {/* <MobileNavLink label="CONTACT US" href="/contact" onClick={closeMobileMenu} /> */}

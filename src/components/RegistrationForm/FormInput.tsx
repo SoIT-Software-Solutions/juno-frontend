@@ -7,6 +7,7 @@ type Props = {
   value: string;
   onChange: (v: string) => void;
   disabled?: boolean;
+  className?: string;
 };
 
 const canDisabled = (label: string) => {
@@ -18,8 +19,9 @@ export const FormInput: React.FC<Props> = ({
   placeholder,
   value,
   onChange,
+  className = "",
 }) => (
-  <div className="flex flex-col space-y-3 group">
+  <div className={`flex flex-col space-y-3 group ${className}`}>
     <label className="text-[10px] md:text-xs font-black tracking-[0.4em] text-white/40 group-focus-within:text-orange-500 uppercase transition-colors duration-300">
       {label}
     </label>
