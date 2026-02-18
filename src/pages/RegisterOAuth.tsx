@@ -32,7 +32,7 @@ const RegisterOAuth: React.FC = () => {
         transition={{ duration: 0.8 }}
         className="max-w-2xl w-full text-center space-y-12"
       >
-        <div className="space-y-6">
+        <div className="space-y-6 flex flex-col items-center">
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -67,20 +67,20 @@ const RegisterOAuth: React.FC = () => {
 
         <div className="grid grid-cols-2 gap-8 pt-8">
           <div className="flex flex-col items-center gap-3">
-            <FiShield className="text-orange-500/60 text-xl" />
-            <p className="text-[10px] tracking-[0.3em] text-white/30 font-black uppercase text-center">
+            <FiShield className="text-orange-500 text-xl" />
+            <p className="text-[10px] tracking-[0.3em] text-white font-black uppercase text-center">
               Identity <br /> Protected
             </p>
           </div>
           <div className="flex flex-col items-center gap-3">
-            <FiLock className="text-orange-500/60 text-xl" />
-            <p className="text-[10px] tracking-[0.3em] text-white/30 font-black uppercase text-center">
+            <FiLock className="text-orange-500 text-xl" />
+            <p className="text-[10px] tracking-[0.3em] text-white font-black uppercase text-center">
               Secure <br /> Transmission
             </p>
           </div>
         </div>
 
-        <p className="text-[10px] tracking-[0.4em] text-white/10 font-black uppercase max-w-xs mx-auto">
+        <p className="text-[10px] tracking-[0.4em] text-white font-black uppercase max-w-xs mx-auto">
           We only use your account to verify your identity. Your data remains
           strictly confidential.
         </p>

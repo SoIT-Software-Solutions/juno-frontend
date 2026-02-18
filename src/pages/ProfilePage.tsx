@@ -14,6 +14,7 @@ import {
   FiCalendar,
   FiArrowRight,
   FiUser,
+  FiLogOut,
 } from "react-icons/fi";
 import { PriBtn } from "../components/ui/PriBtn";
 
@@ -41,6 +42,13 @@ export const ProfilePage: React.FC = () => {
     type: "success" | "error";
     text: string;
   } | null>(null);
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    navigate("/", { replace: true });
+    window.location.reload();
+  };
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -121,23 +129,36 @@ export const ProfilePage: React.FC = () => {
       <div className="absolute bottom-1/4 -left-40 w-[500px] h-[500px] bg-yellow-600/5 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-6xl mx-auto space-y-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center space-y-4"
-        >
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-[1px] w-8 bg-orange-500/30" />
-            <FiUser className="text-orange-500" />
-            <p className="text-orange-500 text-[10px] tracking-[0.6em] font-black uppercase">
-              User Dashboard
-            </p>
-            <div className="h-[1px] w-8 bg-orange-500/30" />
-          </div>
-          <h1 className="text-6xl md:text-8xl gold-text uppercase tracking-tighter">
-            My <span className="text-white">Profile</span>
-          </h1>
-        </motion.div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-left space-y-4"
+          >
+            <div className="flex items-center gap-4">
+              <div className="h-[1px] w-8 bg-orange-500/30" />
+              <FiUser className="text-orange-500" />
+              <p className="text-orange-500 text-[10px] tracking-[0.6em] font-black uppercase">
+                User Dashboard
+              </p>
+            </div>
+            <h1 className="text-6xl md:text-8xl gold-text uppercase tracking-tighter leading-none">
+              My <span className="text-white">Profile</span>
+            </h1>
+          </motion.div>
+
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={handleLogout}
+            className="flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-red-500/10 border border-white/10 hover:border-red-500/30 rounded-2xl transition-all group w-fit"
+          >
+            <FiLogOut className="text-white/40 group-hover:text-red-500 transition-colors" />
+            <span className="text-[10px] font-black tracking-[0.3em] text-white/40 group-hover:text-red-500 uppercase transition-colors">
+              Logout Session
+            </span>
+          </motion.button>
+        </div>
 
         <AnimatePresence>
           {message && (
