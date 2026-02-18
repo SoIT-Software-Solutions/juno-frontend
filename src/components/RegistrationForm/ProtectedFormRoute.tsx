@@ -49,8 +49,11 @@ export const ProtectedFormRoute = ({ children }: { children: JSX.Element }) => {
 
   if (loading) {
     return (
-      <div className="pt-40 text-center text-white min-h-screen">
-        Checking form access...
+      <div className="pt-40 flex flex-col items-center justify-center min-h-screen space-y-6">
+        <div className="w-12 h-12 border-4 border-orange-500/20 border-t-orange-500 rounded-full animate-spin" />
+        <p className="text-white/60 text-xs font-black tracking-[0.5em] uppercase animate-pulse">
+          Validating Access
+        </p>
       </div>
     );
   }

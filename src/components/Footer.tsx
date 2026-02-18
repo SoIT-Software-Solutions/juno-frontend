@@ -1,16 +1,22 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { FiInstagram, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-black/60 backdrop-blur-md border-t border-yellow-500/10 px-6 py-20">
+    <footer className="bg-black/80 backdrop-blur-xl border-t border-white/10 px-6 py-24 relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-orange-600/5 rounded-full blur-[100px] -z-10" />
+
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 text-center md:text-left">
-          <div className="flex flex-col items-center md:items-start">
-            <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black uppercase mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 text-center md:text-left">
+          {/* Queries Section */}
+          <div className="space-y-10">
+            <h4 className="font-hanora text-2xl gold-text tracking-[0.3em] font-black uppercase">
               For Queries
             </h4>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               <ContactPerson
                 name="Jana R"
                 role="CHAIRMAN"
@@ -32,67 +38,64 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center md:items-start space-y-14">
-            <div className="max-w-xs md:max-w-sm">
-              <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black uppercase mb-8">
+          {/* Location & Contact Section */}
+          <div className="flex flex-col space-y-16">
+            <div className="space-y-8">
+              <h4 className="font-hanora text-2xl gold-text tracking-[0.3em] font-black uppercase flex items-center justify-center md:justify-start gap-4">
                 Location
               </h4>
 
               <a
                 href="https://maps.app.goo.gl/336pieByUpv2UFrX8"
                 target={"_blank"}
-                className="block text-white/70 text-base md:text-lg font-medium leading-relaxed hover:text-yellow-500 transition"
+                rel="noreferrer"
+                className="block text-white/50 text-sm md:text-md font-medium tracking-[0.1em] leading-relaxed hover:text-white transition-all duration-300"
               >
                 161, Guru Nanak Salai,
                 <br />
-                Velachery,
-                <br />
-                Chennai – 600042
+                Velachery, Chennai – 600042
               </a>
             </div>
 
-            <div>
-              <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black uppercase mb-10">
+            <div className="space-y-8">
+              <h4 className="font-hanora text-2xl gold-text tracking-[0.3em] font-black uppercase flex items-center justify-center md:justify-start gap-4">
                 Contact
               </h4>
               <a
                 href="mailto:juno@gurunanakcollege.edu.in"
-                className="text-white/70 text-base md:text-lg font-medium hover:text-yellow-500 transition"
+                className="block text-white/50 text-sm md:text-md tracking-[0.1em] font-medium hover:text-white transition-all duration-300"
               >
                 juno@gurunanakcollege.edu.in
               </a>
             </div>
           </div>
 
-          <div className="flex flex-col items-center lg:items-end">
-            <h4 className="font-hanora text-2xl gold-text tracking-[0.2em] font-black uppercase mb-10">
+          {/* Socials Section */}
+          <div className="flex flex-col items-center lg:items-end space-y-10">
+            <h4 className="font-hanora text-2xl gold-text tracking-[0.3em] font-black uppercase">
               Follow Us
             </h4>
 
-            <div className="card-glass w-44 h-44 rounded-[2rem] flex items-center justify-center group cursor-pointer transition-all duration-500 hover:border-yellow-500/40 hover:scale-105">
-              <a href="https://www.instagram.com/juno_gnc/" target={"_blank"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-16 h-16 text-white/40 group-hover:text-yellow-500 transition-colors duration-500"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-              </a>
-            </div>
+            <motion.a
+              href="https://www.instagram.com/juno_gnc/"
+              target={"_blank"}
+              rel="noreferrer"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 30px rgba(249,115,22,0.2)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="card-glass w-36 h-36 rounded-[2.5rem] flex items-center justify-center group overflow-hidden border border-white/5 transition-all duration-500 hover:border-orange-500/30 shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/10 group-hover:to-orange-500/5 transition-all duration-500" />
+              <FiInstagram className="w-12 h-12 text-white/20 group-hover:text-orange-500 transition-all duration-500 filter group-hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
+            </motion.a>
           </div>
         </div>
 
-        <div className="mt-20 pt-8 border-t border-white/5 text-center">
-          <p className="text-white/30 text-[10px] tracking-[0.4em] uppercase font-bold">
-            © 2026 JUNO Edition III. All Rights Reserved.
+        <div className="mt-24 pt-10 border-t border-white/5 flex flex-col items-center justify-center gap-6">
+          <p className="text-white/20 text-[10px] sm:text-[11px] tracking-[0.6em] uppercase font-black text-center">
+            © 2026 JUNO Edition III
           </p>
         </div>
       </div>
@@ -106,13 +109,27 @@ const ContactPerson: React.FC<{
   phone: string;
   link: string;
 }> = ({ name, role, phone, link }) => (
-  <a href={`tel:${link}`} className="group block">
-    <h5 className="text-white font-black text-lg tracking-[0.15em] uppercase mb-1 group-hover:text-yellow-500 transition">
-      {name}
-    </h5>
-    <p className="text-white/40 text-[11px] tracking-[0.2em] font-bold uppercase mb-1">
-      {role}
-    </p>
-    <p className="text-white/70 font-bold text-lg tracking-[0.2em]">{phone}</p>
-  </a>
+  <motion.a
+    href={`tel:${link}`}
+    className="group block space-y-3"
+    whileHover={{ x: 5 }}
+    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+  >
+    <div className="flex flex-col">
+      <span className="text-orange-500/60 text-[8px] sm:text-[9px] tracking-[0.5em] font-black uppercase mb-1">
+        {role}
+      </span>
+      <h5 className="text-white font-black text-lg sm:text-xl tracking-[0.05em] uppercase group-hover:text-orange-500 transition-colors duration-300">
+        {name}
+      </h5>
+    </div>
+    <div className="flex items-center gap-3">
+      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-orange-500/10 transition-colors duration-300">
+        <FiPhone className="text-white/30 group-hover:text-orange-500 text-xs transition-colors duration-300" />
+      </div>
+      <p className="text-white/50 font-bold text-sm sm:text-base tracking-[0.1em] transition-colors duration-300 group-hover:text-white/80">
+        {phone}
+      </p>
+    </div>
+  </motion.a>
 );

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
-import { FiPlus, FiUpload, FiInfo, FiAlertCircle } from "react-icons/fi";
+import {
+  FiPlus,
+  FiUpload,
+  FiInfo,
+  FiAlertCircle,
+  FiChevronRight,
+} from "react-icons/fi";
 import { apiClient } from "../common/utils/apiClient";
 
 const PaymentPage = () => {
@@ -201,9 +207,15 @@ const PaymentPage = () => {
                   disabled={uploading}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="primary-btn py-6 rounded-[24px] text-xl font-black tracking-[0.2em] uppercase w-full"
+                  className="primary-btn py-6 rounded-[24px] text-xl font-black tracking-[0.2em] uppercase w-full flex items-center justify-center gap-4"
                 >
-                  {uploading ? "UPLOADING..." : "Confirm Payment"}
+                  {uploading ? (
+                    "UPLOADING..."
+                  ) : (
+                    <>
+                      Confirm Payment <FiChevronRight className="text-2xl" />
+                    </>
+                  )}
                 </motion.button>
               )}
             </div>

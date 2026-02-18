@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { PriBtn } from "./ui/PriBtn";
+import { FiX } from "react-icons/fi";
 
 interface GalleryProps {
   title: string;
@@ -8,98 +11,124 @@ interface GalleryProps {
 }
 
 export const Gallery: React.FC<GalleryProps> = ({ title, items }) => {
+  const navigate = useNavigate();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null,
   );
 
-  // useEffect(() => {
-  //   document.body.style.overflow =
-  //     selectedImageIndex !== null ? "hidden" : "unset";
-  //   return () => {
-  //     document.body.style.overflow = "unset";
-  //   };
-  // }, [selectedImageIndex]);
+  const openModal = (index: number) => setSelectedImageIndex(index);
+  const closeModal = () => setSelectedImageIndex(null);
 
-  const openModal = (index: number) => {
-    setSelectedImageIndex(index);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05, // Faster stagger
+      },
+    },
   };
 
-  const closeModal = () => {
-    setSelectedImageIndex(null);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
     <>
-      <section className="space-y-16 text-center">
-        <h2 className="font-hanora text-5xl md:text-7xl font-black gold-text tracking-[0.2em] mb-9 mt-16 uppercase">
-          {title}
-        </h2>
+      <section className="space-y-12 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-hanora text-5xl md:text-7xl font-black gold-text tracking-[0.2em] mb-4 mt-8 uppercase">
+            {title}
+          </h2>
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="h-[1px] w-12 bg-orange-500/20" />
+            <p className="text-[10px] tracking-[0.4em] text-orange-500/60 font-bold uppercase">
+              Capturing Moments of Brilliance
+            </p>
+            <div className="h-[1px] w-12 bg-orange-500/20" />
+          </div>
+        </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+        >
           {items.map((url, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="aspect-[4/5] bg-black rounded-sm overflow-hidden shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-yellow-500/20 cursor-pointer"
+              variants={itemVariants}
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.2 },
+              }}
+              className="aspect-[4/5] bg-white/5 rounded-2xl overflow-hidden border border-white/5 relative group"
               onClick={() => openModal(idx)}
+              style={{ willChange: "transform" }}
             >
               <img
                 src={url}
                 alt={`${title} image ${idx + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
+                decoding="async"
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-10">
-          <PriBtn onClick={() => (window.location.href = "/gallery")}>
-            View Full Gallery
-          </PriBtn>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="flex justify-center pt-8"
+        >
+          <PriBtn onClick={() => navigate("/gallery")}>View Full Gallery</PriBtn>
+        </motion.div>
       </section>
 
-      {selectedImageIndex !== null &&
-        createPortal(
-          <div
-            className="fixed inset-0 z-[200] h-screen w-screen flex items-center justify-center bg-black/80 backdrop-blur-sm"
-            onClick={closeModal}
-          >
-            <div className="relative w-full h-full flex items-center justify-center p-4">
-              <button
+      <AnimatePresence>
+        {selectedImageIndex !== null &&
+          createPortal(
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+              onClick={closeModal}
+            >
+              <motion.button
+                className="absolute top-6 right-6 z-[210] p-3 bg-white/10 hover:bg-orange-500 rounded-full text-white transition-colors border border-white/10"
                 onClick={closeModal}
-                className="absolute top-4 right-4 z-[210] text-white hover:text-yellow-500 transition-colors duration-300 bg-black/50 rounded-full p-2"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+                <FiX className="text-xl" />
+              </motion.button>
 
-              <div
-                className="bg-black/95 rounded-lg overflow-hidden shadow-2xl max-w-4xl max-h-[90vh] w-full flex items-center justify-center"
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="relative max-w-5xl max-h-[85vh] w-full flex items-center justify-center rounded-2xl overflow-hidden border border-white/10 bg-black"
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
                   src={items[selectedImageIndex]}
-                  alt={`${title} full image`}
-                  className="max-w-full max-h-[80vh] object-contain"
+                  alt={`${title} full viewport`}
+                  className="max-w-full max-h-[85vh] object-contain"
                 />
-              </div>
-            </div>
-          </div>,
-          document.body,
-        )}
+              </motion.div>
+            </motion.div>,
+            document.body,
+          )}
+      </AnimatePresence>
     </>
   );
 };

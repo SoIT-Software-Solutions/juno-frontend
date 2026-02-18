@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FormInput } from "./FormInput";
 
 type Props = {
-  value: string | null; // incoming value from DB or form state
+  value: string | null;
   onChange: (v: string) => void;
-  otherValue: string; // typed value if 'Others'
+  otherValue: string;
   onOtherChange: (v: string) => void;
   disabled?: boolean;
 };
@@ -28,13 +29,11 @@ export const AcademicYearSelector: React.FC<Props> = ({
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
   const [selectedOtherValue, setSelectedOtherValue] = useState<string>("");
 
-  // Determine if incoming value is in known years
   useEffect(() => {
     if (value && YEARS.some((y) => y.value === value)) {
       setSelectedValue(value);
       setSelectedOtherValue("");
     } else if (value) {
-      // Not a known year → others
       setSelectedValue("others");
       setSelectedOtherValue(value);
     } else {
@@ -45,82 +44,70 @@ export const AcademicYearSelector: React.FC<Props> = ({
 
   const isOthers = selectedValue === "others";
 
-  const handleRadioChange = (v: string) => {
+  const handleChoice = (v: string) => {
+    if (disabled) return;
     setSelectedValue(v);
     if (v !== "others") {
       onChange(v);
-      onOtherChange(""); // clear otherValue
+      onOtherChange("");
     } else {
       onChange("others");
-      onOtherChange(selectedOtherValue); // keep current otherValue
+      onOtherChange(selectedOtherValue);
     }
   };
 
   const handleOtherChange = (v: string) => {
     setSelectedOtherValue(v);
     onOtherChange(v);
-    onChange("others"); // always keep value as "others" in state
+    onChange("others");
   };
 
   return (
-    <div className="space-y-6">
-      <h3 className="text-sm font-black tracking-[0.2em] text-white uppercase">
+    <div className="space-y-8">
+      <h3 className="text-xs font-black tracking-[0.5em] text-orange-500 uppercase flex items-center gap-3">
+        <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
         Academic Year
       </h3>
 
-      <div className="flex flex-wrap gap-8">
+      <div className="flex flex-wrap gap-4">
         {YEARS.concat({ label: "Others", value: "others" }).map((y) => {
-          const labelText =
-            y.value === "others" && isOthers && selectedOtherValue
-              ? selectedOtherValue
-              : y.label;
-
+          const isSelected = selectedValue === y.value;
           return (
-            <label
+            <motion.button
               key={y.value}
-              className={`flex items-center gap-3 ${
-                disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-              }`}
+              type="button"
+              whileHover={!disabled ? { scale: 1.05 } : {}}
+              whileTap={!disabled ? { scale: 0.95 } : {}}
+              onClick={() => handleChoice(y.value)}
+              className={`px-6 py-3 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-300 border
+                ${
+                  isSelected
+                    ? "bg-orange-500 border-orange-500 text-black shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+                    : "bg-white/5 border-white/10 text-white/40 hover:text-white hover:border-white/30"
+                }
+                ${disabled ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}
+              `}
             >
-              <input
-                type="radio"
-                name="academicYear"
-                value={y.value}
-                disabled={disabled}
-                checked={selectedValue === y.value}
-                onChange={() => handleRadioChange(y.value)}
-                className="
-                  w-5 h-5 rounded-full
-                  appearance-none border-2 border-white
-                  checked:border-[var(--gold)]
-                  checked:bg-[var(--gold)]
-                  transition-colors
-                "
-              />
-              <span
-                className={`text-xs font-bold uppercase transition-colors ${
-                  selectedValue === y.value
-                    ? "text-[var(--gold)]"
-                    : "text-white"
-                }`}
-              >
-                {labelText}
-              </span>
-            </label>
+              {y.label}
+            </motion.button>
           );
         })}
       </div>
 
       {isOthers && (
-        <div className="max-w-md pt-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-md"
+        >
           <FormInput
-            label="Specify Other"
-            placeholder="Enter your year / designation"
+            label="Specify Your Year"
+            placeholder="e.g. Alumnus, PhD, etc."
             value={selectedOtherValue}
             disabled={disabled}
             onChange={handleOtherChange}
           />
-        </div>
+        </motion.div>
       )}
     </div>
   );
