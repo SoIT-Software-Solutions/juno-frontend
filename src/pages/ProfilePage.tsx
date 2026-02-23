@@ -324,6 +324,32 @@ export const ProfilePage: React.FC = () => {
             </PriBtn>
           </motion.div>
         </div>
+
+        {/* Danger Zone / Account Actions */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="pt-12 border-t border-white/5"
+        >
+          <div className="card-glass p-8 md:p-12 rounded-[3.5rem] border border-red-500/10 bg-red-500/[0.02] flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="space-y-2 text-center md:text-left">
+              <h3 className="text-xl font-black text-white uppercase tracking-widest">
+                Account Security
+              </h3>
+              <p className="text-xs text-white/40 tracking-widest uppercase font-bold">
+                End your current session safely
+              </p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="px-12 py-5 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/30 rounded-2xl text-[11px] font-black tracking-[0.4em] uppercase transition-all duration-500 hover:shadow-[0_0_30px_rgba(239,68,68,0.3)] flex items-center gap-3"
+            >
+              <FiLogOut className="text-lg" />
+              Sign Out from JUNO
+            </button>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
